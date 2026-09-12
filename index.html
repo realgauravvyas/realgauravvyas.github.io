@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" data-nav="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gaurav Vyas — What survives the sieve</title>
+<meta name="description" content="Gaurav Vyas — B.Sc. (Hons.) Data Science &amp; AI, IIT Guwahati. Extended OEIS A181671 from 10^17 to 10^23, recovered a 128-bit AES key from power traces, and publishes null results.">
+<meta name="author" content="Gaurav Vyas">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#06070c">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gaurav Vyas — What survives the sieve">
+<meta property="og:description" content="Extended OEIS A181671 from 10^17 to 10^23. Recovered a 128-bit AES key from power traces. Publishes null results.">
+<meta property="og:url" content="https://realgauravvyas.github.io/">
+<meta property="og:image" content="https://realgauravvyas.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="assets/css/style.css" as="style">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#work">Skip to the work</a>
+
+<!-- ═══════════════════════════ CHROME ═══════════════════════════ -->
+<header class="bar" id="bar">
+  <a class="mark" href="#top" aria-label="Gaurav Vyas — top of page">
+    <span class="mark-glyph">R</span><span class="mark-sub">n</span>
+  </a>
+  <nav class="bar-nav" aria-label="Sections">
+    <a href="#work">Work</a>
+    <a href="#method">Method</a>
+    <a href="#record">Record</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="skim-toggle" id="skimToggle" type="button" aria-pressed="false"
+          title="Condense the page to hard facts only (press S)">
+    <span class="skim-dot" aria-hidden="true"></span>
+    <span class="skim-label">Skim</span>
+  </button>
+</header>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero" id="top">
+  <canvas class="sieve-base" id="sieveBase" aria-hidden="true"></canvas>
+  <canvas class="sieve-glow" id="sieveGlow" aria-hidden="true"></canvas>
+  <div class="hero-vignette" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <p class="eyebrow">
+      <span class="eyebrow-rule" aria-hidden="true"></span>
+      Gaurav Vyas
+    </p>
+
+    <h1 class="display">
+      What survives<br>the&nbsp;sieve.
+    </h1>
+
+    <p class="lede">
+      B.Sc. (Hons.) Data Science &amp; AI at <strong>IIT&nbsp;Guwahati</strong>. I extended
+      <strong class="hl">OEIS&nbsp;A181671</strong> from 10<sup>17</sup> to 10<sup>23</sup> on a laptop,
+      pulled a <strong>128-bit AES key</strong> out of power traces, and publish my
+      <strong>null results</strong>.
+    </p>
+
+    <ul class="chips" aria-label="Headline credentials">
+      <li class="chip chip-gold">
+        <span class="chip-k">OEIS A181671</span>
+        <span class="chip-v">a(18)–a(23) &middot; accepted Aug 2026</span>
+      </li>
+      <li class="chip">
+        <span class="chip-k">AES-128 recovered</span>
+        <span class="chip-v">16/16 bytes &middot; log<sub>2</sub> rank ≤ 1</span>
+      </li>
+      <li class="chip">
+        <span class="chip-k">Shipped</span>
+        <span class="chip-v">17 public repos &middot; 5 live demos</span>
+      </li>
+    </ul>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#work">See the work <span aria-hidden="true">↓</span></a>
+      <a class="btn" href="https://github.com/realgauravvyas" rel="noopener">GitHub</a>
+      <a class="btn" href="mailto:g.vyas@op.iitg.ac.in">Email</a>
+    </div>
+
+    <p class="hero-hint full-only" id="heroHint">
+      Every number above is really sieved in your browser — composites struck out,
+      primes left standing. The <b class="gold">gold</b> ones are Ramanujan primes,
+      and the twelve across the top are my projects. Click one.
+    </p>
+  </div>
+
+  <!-- live computation readout -->
+  <output class="readout" id="readout" aria-live="off">
+    <span class="readout-row"><span class="readout-k">sieve</span><span class="readout-v" id="roPhase">initialising</span></span>
+    <span class="readout-row"><span class="readout-k">π(N)</span><span class="readout-v" id="roPi">—</span></span>
+    <span class="readout-row"><span class="readout-k">Ramanujan</span><span class="readout-v" id="roR">—</span></span>
+    <span class="readout-row readout-check"><span class="readout-k">check</span><span class="readout-v" id="roVerify">—</span></span>
+  </output>
+
+</section>
+
+<!-- ═══════════════════════════ LEDGER ═══════════════════════════ -->
+<section class="ledger" aria-label="At a glance">
+  <div class="wrap ledger-grid">
+    <div class="ledger-item">
+      <dt>Studying</dt>
+      <dd>B.Sc. (Hons.) Data Science &amp; AI<br><span class="muted">IIT Guwahati, 2023–2027</span></dd>
+    </div>
+    <div class="ledger-item">
+      <dt>Working on</dt>
+      <dd>Computational number theory,<br><span class="muted">side-channel ML, document AI</span></dd>
+    </div>
+    <div class="ledger-item">
+      <dt>Known for</dt>
+      <dd>Six terms of a prime sequence<br><span class="muted">that will outlive the website</span></dd>
+    </div>
+    <div class="ledger-item">
+      <dt>Reach me</dt>
+      <dd><a href="mailto:g.vyas@op.iitg.ac.in">g.vyas@op.iitg.ac.in</a><br><span class="muted">replies within a day</span></dd>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WORK ═══════════════════════════ -->
+<section class="section" id="work">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-idx">01</p>
+      <h2 class="sec-title">The work</h2>
+      <p class="sec-note full-only">
+        Twelve things, each anchored to the Ramanujan prime that indexes it above.
+        Numbers below are measured, not estimated.
+      </p>
+    </header>
+
+    <div class="filters" role="group" aria-label="Filter projects by kind">
+      <button class="filter is-on" data-filter="all" type="button">All <span class="filter-n">12</span></button>
+      <button class="filter" data-filter="research" type="button">Research</button>
+      <button class="filter" data-filter="ml" type="button">ML / AI</button>
+      <button class="filter" data-filter="systems" type="button">Systems</button>
+      <button class="filter" data-filter="shipped" type="button">Shipped</button>
+    </div>
+
+    <ol class="cards" id="cards">
+
+      <!-- ── R1 = 2 ─────────────────────────────── -->
+      <li class="card card-feature" data-r="2" data-kind="research" id="p-oeis">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>1</sub></span><span class="rail-n">2</span></div>
+        <div class="card-body cf-grid">
+         <div class="cf-main">
+          <p class="kicker kicker-gold">Published mathematics</p>
+          <h3 class="card-title">Six new terms in OEIS A181671</h3>
+          <p class="card-line">
+            Extended the count of Ramanujan primes from 10<sup>17</sup> to 10<sup>23</sup> —
+            permanently, inside the reference work itself.
+          </p>
+          <ul class="metrics">
+            <li><b>a(18)–a(23)</b> accepted 15 Aug 2026</li>
+            <li><b>10<sup>17</sup> → 10<sup>23</sup></b> range extended</li>
+            <li><b>2</b> independent π(x) algorithms agree</li>
+            <li><b>1</b> laptop, 12 threads, no cluster</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              A bracketing-lemma pipeline: <code>primecount</code> at O(log&nbsp;Q) grid endpoints,
+              a 128-bit segmented sieve, and Dusart 2010 / Johnston 2022 analytic tail bounds.
+            </p>
+            <p>
+              The part worth defending is the anchoring. Every π-value the pipeline leans on matches
+              the published b-file of <a href="https://oeis.org/A007053" rel="noopener">A007053</a>
+              exactly — computed by different people, with different code, more than a decade earlier.
+              So the anchors need no re-running to be trusted, and the only quantity this work
+              uniquely contributes is one small integer per term.
+            </p>
+            <p class="card-caveat">
+              The base-2 sibling sequence (A190502, a(57)–a(72)) is submitted and under editorial
+              review — <b>not published</b>, and not claimed here.
+            </p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://oeis.org/A181671" rel="noopener">The OEIS entry ↗</a>
+            <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-1e19" rel="noopener">Source &amp; paper ↗</a>
+          </p>
+         </div>
+
+         <aside class="cf-cite full-only" aria-label="The OEIS record">
+           <p class="cf-cite-head">the record itself</p>
+           <pre class="cf-cite-body"><span class="cf-f">%N</span> A181671 Number of Ramanujan
+    primes less than 10^n.
+<span class="cf-f">%E</span> a(10)-a(11) from _Dana Jacobsen_
+<span class="cf-f">%E</span> a(12) from _Dana Jacobsen_
+<span class="cf-f">%E</span> a(13)-a(14) from _Dana Jacobsen_
+<span class="cf-f">%E</span> a(15)-a(17) from _Dana Jacobsen_
+<span class="cf-f">%E</span> <b>a(18)-a(23) from _Gaurav Vyas_,
+    Aug 15 2026</b></pre>
+           <p class="cf-cite-foot">oeis.org/A181671</p>
+         </aside>
+        </div>
+      </li>
+
+      <!-- ── R2 = 11 ────────────────────────────── -->
+      <li class="card" data-r="11" data-kind="research ml" id="p-scakr">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>2</sub></span><span class="rail-n">11</span></div>
+        <div class="card-body">
+          <p class="kicker">Security research</p>
+          <h3 class="card-title">A 128-bit AES key, out of power traces</h3>
+          <p class="card-line">
+            Deep-learning side-channel attack with certified key enumeration, on real ASCAD traces.
+          </p>
+          <ul class="metrics">
+            <li><b>16/16</b> key bytes recovered</li>
+            <li><b>log<sub>2</sub> rank ≤ 1</b> across 3 seeds</li>
+            <li><b>220 → 6.7</b> traces needed at a 2<sup>32</sup> budget</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              Domain adaptation rescues the attack under desynchronisation (guessing entropy 0 at
+              2,000 adaptation traces) but <em>not</em> across acquisition campaigns, where the
+              target signal is simply weaker — SNR 1.6 against 6.9. Reported as the mixed result it is.
+            </p>
+            <p>
+              Three separate bugs here all presented identically: validation loss stuck near
+              ln(256), rank near random. None were hyperparameter problems. The distributed traces
+              window a different key byte than assumed; under first-order masking either share alone
+              carries no key information; and 45.9M of 47.3M parameters were funnelling through one
+              linear bottleneck that memorised the profiling set.
+            </p>
+          </div>
+          <p class="links">
+            <span class="link-note">IIT Guwahati degree project · code on request</span>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R3 = 17 ────────────────────────────── -->
+      <li class="card" data-r="17" data-kind="ml" id="p-ocr">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>3</sub></span><span class="rail-n">17</span></div>
+        <div class="card-body">
+          <p class="kicker">Applied ML</p>
+          <h3 class="card-title">Handwritten mathematics → compilable LaTeX</h3>
+          <p class="card-line">
+            LoRA fine-tunes of GLM-OCR and Baidu Unlimited-OCR over 15,829 scanned exam pages.
+          </p>
+          <ul class="metrics">
+            <li><b>88.9%</b> of generated documents compile</li>
+            <li><b>0.38</b> mean character error rate</li>
+            <li><b>15,829</b> pages from 1,915 scans</li>
+            <li><b>GGUF</b> builds published on Hugging Face</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              Training on document <em>bodies</em> and deriving the preamble afterwards took oracle
+              compile rate from 82.4% to 100% at exactly zero cost in character error. The failures
+              were autoregressive ordering — the model emitted a preamble before it knew what the
+              body would need — not recognition.
+            </p>
+            <p class="card-caveat">
+              The legacy test split leaks at document level: 699 of 700 test pages share a source
+              scan with training. So a clean 703-page split with 0% document overlap is published
+              alongside it, and the leaked number is never quoted on its own.
+            </p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://huggingface.co/ctogaurav" rel="noopener">Models on Hugging Face ↗</a>
+            <a href="https://github.com/realgauravvyas/ocr2tex" rel="noopener">Code ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R4 = 29 ────────────────────────────── -->
+      <li class="card card-null" data-r="29" data-kind="ml research" id="p-chess">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>4</sub></span><span class="rail-n">29</span></div>
+        <div class="card-body">
+          <p class="kicker kicker-null">Null result</p>
+          <h3 class="card-title">Self-play RL that didn’t work — and the report that says so</h3>
+          <p class="card-line">
+            A 760,717-parameter AlphaZero-style chess engine, and an honest account of its failure.
+          </p>
+          <ul class="metrics">
+            <li><b>46.2%</b> vs baseline (95% CI 37.4–55.1)</li>
+            <li><b>159</b> logged eval points found meaningless</li>
+            <li><b>76 checks + 6/6</b> mutation tests catching real shipped bugs</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              Training loss fell 2.36 → 1.85 the entire run while the network got no stronger. The
+              evaluation had been scoring White’s games while the network alternated colours, so
+              every logged point sat pinned at 50% and carried zero information. An earlier run was
+              measurably <em>worse</em> than its own starting point — 31.2%.
+            </p>
+            <p>
+              The binding constraint turned out to be sample efficiency: 128 simulations is 4.3
+              visits per legal move, against AlphaZero’s ~27. I could have reframed this as a
+              success story about infrastructure. It is published as a null result instead.
+            </p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://realgauravvyas.github.io/chess-ai/" rel="noopener">Live dashboard ↗</a>
+            <a href="https://github.com/realgauravvyas/chess-ai" rel="noopener">Code &amp; IEEE report ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R5 = 41 ────────────────────────────── -->
+      <li class="card" data-r="41" data-kind="systems" id="p-routeguard">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>5</sub></span><span class="rail-n">41</span></div>
+        <div class="card-body">
+          <p class="kicker">Agentic systems</p>
+          <h3 class="card-title">RouteGuard — supply-chain recovery without an LLM</h3>
+          <p class="card-line">
+            A symbolic, model-based planning agent for autonomous retail recovery.
+            No API keys, no <code>pip install</code>, no build step.
+          </p>
+          <ul class="metrics">
+            <li><b>17/17</b> tests, <b>80/80</b> oracle agreement</li>
+            <li><b>100 units</b> · ₹11,700 · 38 kg CO₂e · ETA 22 h</li>
+            <li><b>stdlib only</b> — Python with zero dependencies</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              The browser build isn’t a reimplementation you have to take on faith. A conformance
+              check replays the committed evidence event by event — including SHA-256 receipt
+              digests, all five scenarios and all eighty benchmark cases with identical search
+              counts. If the JavaScript engine drifts from the Python one, the deploy fails.
+            </p>
+            <p class="muted">Team TechTitan · Tech Zephyr 4.0, IIT Bhubaneswar.</p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://realgauravvyas.github.io/TechTitan-RouteGuard-Agentic/" rel="noopener">Live demo ↗</a>
+            <a href="https://github.com/realgauravvyas/TechTitan-RouteGuard-Agentic" rel="noopener">Code ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R6 = 47 ────────────────────────────── -->
+      <li class="card" data-r="47" data-kind="systems shipped" id="p-carbon">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>6</sub></span><span class="rail-n">47</span></div>
+        <div class="card-body">
+          <p class="kicker">Product</p>
+          <h3 class="card-title">CarbonCampus — campus carbon accounting, offline</h3>
+          <p class="card-line">
+            A PWA that computes a campus footprint with no backend and no network connection.
+          </p>
+          <ul class="metrics">
+            <li><b>Offline-first</b> — IndexedDB, no server required</li>
+            <li><b>One engine</b> shared by the app and the API</li>
+            <li><b>Avinya 2026</b>, IIT Guwahati</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              An npm workspace where the emission-factor registry and computation engine are
+              imported by both the PWA and the Fastify server, so the offline and online paths
+              cannot quietly disagree with each other. Deployed backend-less on purpose.
+            </p>
+            <p class="muted">Team EcoGenesis.</p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://realgauravvyas.github.io/carboncampus/" rel="noopener">Live demo ↗</a>
+            <a href="https://github.com/realgauravvyas/carboncampus" rel="noopener">Code ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R7 = 59 ────────────────────────────── -->
+      <li class="card" data-r="59" data-kind="research shipped" id="p-millennium">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>7</sub></span><span class="rail-n">59</span></div>
+        <div class="card-body">
+          <p class="kicker">Teaching</p>
+          <h3 class="card-title">The seven Millennium Prize Problems, simulated</h3>
+          <p class="card-line">
+            All seven explained for non-mathematicians, each with real mathematics running live
+            in the browser.
+          </p>
+          <ul class="metrics">
+            <li><b>7</b> interactive simulations</li>
+            <li><b>~2e-5</b> accuracy on computed zeta zeros</li>
+            <li><b>0</b> dependencies, <b>32/32</b> links verified</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              Elliptic-curve point counts are checked against brute force over F<sub>p</sub>²,
+              rational points use exact BigInt arithmetic, and nothing on the page is faked or
+              hardcoded. Navier–Stokes is framed as <em>claimed</em> rather than settled, because
+              that is what it currently is.
+            </p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://realgauravvyas.github.io/MillenniumProblems/" rel="noopener">Live ↗</a>
+            <a href="https://github.com/realgauravvyas/MillenniumProblems" rel="noopener">Code ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R8 = 67 ────────────────────────────── -->
+      <li class="card" data-r="67" data-kind="shipped systems" id="p-voltfall">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>8</sub></span><span class="rail-n">67</span></div>
+        <div class="card-body">
+          <p class="kicker">Shipped</p>
+          <h3 class="card-title">Voltfall — a 94 KB Android roguelite</h3>
+          <p class="card-line">
+            A custom engine on SurfaceView. Every sprite and every sound is generated at runtime.
+          </p>
+          <ul class="metrics">
+            <li><b>~94 KB</b> release APK</li>
+            <li><b>0</b> third-party runtime dependencies</li>
+            <li><b>No</b> INTERNET permission at all</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              The size is the product, not an accident of scope. Declaring no network permission is
+              precisely what lets the Play Data Safety form honestly answer “no data collected” —
+              adding a single ads or analytics SDK would invalidate the privacy policy, the EULA and
+              that answer all at once.
+            </p>
+          </div>
+          <p class="links">
+            <a href="https://github.com/realgauravvyas/voltfall" rel="noopener">Code ↗</a>
+            <a href="https://github.com/realgauravvyas/blackout-studio" rel="noopener">Blackout Studio ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R9 = 71 ────────────────────────────── -->
+      <li class="card card-compact" data-r="71" data-kind="shipped" id="p-neon">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>9</sub></span><span class="rail-n">71</span></div>
+        <div class="card-body">
+          <p class="kicker">Shipped</p>
+          <h3 class="card-title">Neon Depths</h3>
+          <p class="card-line">
+            A twin-stick roguelite for Windows. No engine, no asset packs — the same constraint,
+            a different platform.
+          </p>
+          <p class="links"><a href="https://github.com/realgauravvyas/neon-depths" rel="noopener">Code ↗</a></p>
+        </div>
+      </li>
+
+      <!-- ── R10 = 97 ───────────────────────────── -->
+      <li class="card card-compact" data-r="97" data-kind="shipped research" id="p-surprises">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>10</sub></span><span class="rail-n">97</span></div>
+        <div class="card-body">
+          <p class="kicker">Interactive</p>
+          <h3 class="card-title">Mathematical Surprises</h3>
+          <p class="card-line">
+            Interactive mathematics and physics visualisations — the results that don’t look
+            like they should be true.
+          </p>
+          <p class="links">
+            <a class="link-strong" href="https://mathematical-surprises.vercel.app" rel="noopener">Live ↗</a>
+            <a href="https://github.com/realgauravvyas/mathematical-surprises" rel="noopener">Code ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R11 = 101 ──────────────────────────── -->
+      <li class="card card-compact" data-r="101" data-kind="research ml" id="p-drishti">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>11</sub></span><span class="rail-n">101</span></div>
+        <div class="card-body">
+          <p class="kicker">Research</p>
+          <h3 class="card-title">Drishti</h3>
+          <p class="card-line">
+            A post-disaster information-fog resolver: calibrated belief over settlement-level
+            reports, for when the reports contradict each other.
+          </p>
+          <p class="links"><a href="https://github.com/realgauravvyas/drishti" rel="noopener">Code ↗</a></p>
+        </div>
+      </li>
+
+      <!-- ── R12 = 107 ──────────────────────────── -->
+      <li class="card card-compact" data-r="107" data-kind="ml systems" id="p-hemispher">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>12</sub></span><span class="rail-n">107</span></div>
+        <div class="card-body">
+          <p class="kicker">Tooling</p>
+          <h3 class="card-title">hemispheR-py</h3>
+          <p class="card-line">
+            A dependency-light Python port of hemispherical fisheye canopy photo analysis.
+          </p>
+          <p class="links"><a href="https://github.com/realgauravvyas/hemispheR-py" rel="noopener">Code ↗</a></p>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ METHOD ═══════════════════════════ -->
+<section class="section section-method" id="method">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-idx">02</p>
+      <h2 class="sec-title">How I work</h2>
+      <p class="sec-note full-only">Three habits, each with the specific mistake that taught it.</p>
+    </header>
+
+    <div class="method-grid">
+      <article class="method">
+        <p class="method-n" aria-hidden="true">i</p>
+        <h3>Anchor to someone else’s numbers.</h3>
+        <p class="full-only">
+          Self-verification proves nothing. The prime counts underpinning my OEIS submission match a
+          table computed twelve years earlier by different people running different code — so a
+          reviewer can check the work without re-running any of it.
+        </p>
+        <p class="method-tag">Independent confirmation beats a certificate you wrote yourself.</p>
+      </article>
+
+      <article class="method">
+        <p class="method-n" aria-hidden="true">ii</p>
+        <h3>Measure before you tune.</h3>
+        <p class="full-only">
+          A stuck loss looks like a hyperparameter problem and almost never is. Three times now the
+          real answer was that the input carried no signal, or that one layer held 97% of the
+          parameters. Check what’s <em>in</em> the data and where the weights <em>are</em> first.
+        </p>
+        <p class="method-tag">Learning rates are the last thing to touch, not the first.</p>
+      </article>
+
+      <article class="method">
+        <p class="method-n" aria-hidden="true">iii</p>
+        <h3>Publish the null result.</h3>
+        <p class="full-only">
+          My chess engine’s self-play training produced no measurable gain, and the report says so in
+          the abstract. I also found that the metric which had said otherwise was broken. Both facts
+          are in the public repository.
+        </p>
+        <p class="method-tag">A result you can trust is worth more than one you wanted.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ RECORD ═══════════════════════════ -->
+<section class="section" id="record">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-idx">03</p>
+      <h2 class="sec-title">Record</h2>
+    </header>
+
+    <ol class="record">
+      <li class="rec">
+        <p class="rec-when">2026</p>
+        <div class="rec-what">
+          <h3>OEIS contributor — A181671</h3>
+          <p>Six terms accepted into the On-Line Encyclopedia of Integer Sequences, 15 Aug 2026.
+             A second sequence is under editorial review.</p>
+        </div>
+      </li>
+      <li class="rec">
+        <p class="rec-when">2023 – 2027</p>
+        <div class="rec-what">
+          <h3>B.Sc. (Hons.) Data Science &amp; Artificial Intelligence</h3>
+          <p>Indian Institute of Technology, Guwahati. <span class="muted">CGPA 7.75.</span>
+             Coursework across machine learning, deep learning and data mining;
+             degree projects in side-channel cryptanalysis and reinforcement learning.</p>
+        </div>
+      </li>
+      <li class="rec">
+        <p class="rec-when">2021 – now</p>
+        <div class="rec-what">
+          <h3>Advanced Mathematics Expert — Chegg Inc.</h3>
+          <p>1,187+ advanced mathematics problems solved with worked, step-by-step explanations
+             and a consistently high accuracy rating.</p>
+        </div>
+      </li>
+      <li class="rec">
+        <p class="rec-when">Ongoing</p>
+        <div class="rec-what">
+          <h3>Competitions</h3>
+          <p>Tech Zephyr 4.0 agentic-AI hackathon (IIT Bhubaneswar, team lead) ·
+             Avinya 2026 EcoInnovate Challenge (IIT Guwahati).</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="stack full-only">
+      <h3 class="stack-title">Tools I actually reach for</h3>
+      <p class="stack-list">
+        <span>Python</span><span>PyTorch</span><span>NumPy</span><span>C / C++</span><span>Kotlin</span>
+        <span>TypeScript</span><span>React</span><span>LaTeX</span><span>CUDA</span><span>Git</span>
+        <span>LoRA / PEFT</span><span>Hugging Face</span><span>scikit-learn</span><span>OpenCV</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+<section class="section section-contact" id="contact">
+  <div class="wrap contact-wrap">
+    <div class="contact-main">
+      <p class="sec-idx">04</p>
+      <h2 class="contact-title">Let’s talk.</h2>
+      <p class="contact-line full-only">
+        Open to research collaborations, internships and anything where being right matters
+        more than being fast.
+      </p>
+      <p class="contact-mail">
+        <a href="mailto:g.vyas@op.iitg.ac.in">g.vyas@op.iitg.ac.in</a>
+      </p>
+      <ul class="contact-links">
+        <li><a href="https://github.com/realgauravvyas" rel="noopener">GitHub</a></li>
+        <li><a href="https://huggingface.co/ctogaurav" rel="noopener">Hugging Face</a></li>
+        <li><a href="https://oeis.org/A181671" rel="noopener">OEIS</a></li>
+      </ul>
+    </div>
+    <figure class="portrait">
+      <img src="assets/img/gaurav.jpg" alt="Portrait of Gaurav Vyas" width="320" height="320" loading="lazy" decoding="async">
+    </figure>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-wrap">
+    <p>© <span id="year">2026</span> Gaurav Vyas</p>
+    <p class="foot-mid">
+      <span id="footMath">Sieved in-browser · verified against OEIS A104272</span>
+    </p>
+    <p><a href="https://github.com/realgauravvyas/realgauravvyas.github.io" rel="noopener">Source of this page ↗</a></p>
+  </div>
+</footer>
+
+<noscript>
+  <div class="wrap noscript-note">
+    <p><b>JavaScript is off</b>, so the sieve animation and filters are inactive — everything
+    written above is still here, and every link still works.</p>
+  </div>
+</noscript>
+
+<script src="assets/js/sieve.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

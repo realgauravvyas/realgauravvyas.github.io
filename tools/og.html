@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden;background:#06070c}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    color:#c6cfe0;position:relative;
+  }
+  #g{position:absolute;inset:0}
+  .veil{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(110% 90% at 6% 45%, rgba(6,7,12,.98) 0%, rgba(6,7,12,.9) 34%, rgba(6,7,12,.25) 66%, rgba(6,7,12,0) 88%),
+      linear-gradient(to bottom, rgba(6,7,12,.5), rgba(6,7,12,0) 30%, rgba(6,7,12,.55));
+  }
+  .in{position:absolute;inset:0;padding:74px 80px;display:flex;flex-direction:column;justify-content:center}
+  .eb{
+    font-family:ui-monospace,Consolas,monospace;font-size:17px;letter-spacing:.34em;
+    text-transform:uppercase;color:#ffc14d;margin-bottom:26px;display:flex;align-items:center;gap:16px;
+  }
+  .eb i{display:block;width:58px;height:1px;background:linear-gradient(to right,#ffc14d,rgba(255,193,77,0))}
+  h1{
+    font-family:"Iowan Old Style",Palatino,Georgia,serif;font-weight:400;
+    font-size:96px;line-height:.95;letter-spacing:-.03em;color:#eef3fb;margin-bottom:30px;
+  }
+  p{font-size:25px;line-height:1.5;color:#c6cfe0;max-width:23ch}
+  p b{color:#ffc14d;font-weight:600}
+  .chips{display:flex;gap:12px;margin-top:38px}
+  .c{
+    border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:12px 20px;
+    background:rgba(13,16,25,.75);
+  }
+  .c.gold{border-color:rgba(255,193,77,.5);background:linear-gradient(135deg,rgba(255,193,77,.16),rgba(13,16,25,.8))}
+  .k{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#78849b}
+  .c.gold .k{color:#ffc14d}
+  .v{font-size:17px;color:#eef3fb;margin-top:2px}
+  .c.gold .v{color:#ffe9b0}
+</style></head>
+<body>
+<canvas id="g" width="1200" height="630"></canvas>
+<div class="veil"></div>
+<div class="in">
+  <div class="eb"><i></i>Gaurav Vyas</div>
+  <h1>What survives<br>the sieve.</h1>
+  <p>Extended <b>OEIS A181671</b> from 10<sup>17</sup> to 10<sup>23</sup>. Recovered a 128-bit AES key from power traces.</p>
+  <div class="chips">
+    <div class="c gold"><div class="k">OEIS A181671</div><div class="v">a(18)–a(23) · Aug 2026</div></div>
+    <div class="c"><div class="k">IIT Guwahati</div><div class="v">B.Sc. (Hons.) DSAI</div></div>
+  </div>
+</div>
+<script src="../assets/js/sieve.js"></script>
+<script>
+(function(){
+  var cell=40, cols=Math.floor(1200/cell), rows=Math.ceil(630/cell);
+  var N=cols*rows, S=window.Sieve.compute(N);
+  var c=document.getElementById('g').getContext('2d');
+  var offX=Math.round((1200-cols*cell)/2);
+  c.textAlign='center';c.textBaseline='middle';
+  var f=Math.round(cell*0.36);
+  c.font='400 '+f+'px ui-monospace,Consolas,monospace';
+  for(var i=1;i<=N;i++){
+    var k=i-1, x=offX+(k%cols)*cell+cell/2, y=Math.floor(k/cols)*cell+cell/2;
+    if(S.isRamanujan[i]) continue;
+    c.fillStyle = S.composite[i] ? 'rgba(122,134,156,.085)' : 'rgba(232,241,255,.72)';
+    c.fillText(String(i),x,y);
+  }
+  c.font='700 '+f+'px ui-monospace,Consolas,monospace';
+  for(var j=0;j<S.R.length;j++){
+    var v=S.R[j], kk=v-1;
+    var x2=offX+(kk%cols)*cell+cell/2, y2=Math.floor(kk/cols)*cell+cell/2;
+    c.shadowColor='rgba(255,193,77,.6)'; c.shadowBlur=14;
+    c.fillStyle='rgba(255,225,150,.95)';
+    c.fillText(String(v),x2,y2);
+  }
+  c.shadowBlur=0;
+  document.title='ready:'+S.verify.ok;
+})();
+</script>
+</body></html>

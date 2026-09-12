@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#06070c"/>
+  <g fill="#7a869c" opacity=".35" font-family="ui-monospace,Consolas,monospace" font-size="15" text-anchor="middle">
+    <text x="16" y="21">4</text><text x="48" y="21">6</text>
+    <text x="16" y="52">8</text><text x="48" y="52">9</text>
+  </g>
+  <circle cx="32" cy="32" r="17" fill="#ffc14d" opacity=".14"/>
+  <text x="32" y="39" text-anchor="middle" font-family="ui-monospace,Consolas,monospace"
+        font-size="26" font-weight="700" fill="#ffc14d">R</text>
+</svg>
