@@ -14,6 +14,12 @@ const CHROME = process.env.CHROME_PATH ||
     ? 'C:/Program Files/Google/Chrome/Application/chrome.exe'
     : 'google-chrome');
 
+if (typeof WebSocket === 'undefined') {
+  console.error('probe.mjs needs the global WebSocket (Node 22+). ' +
+    'Running Node ' + process.versions.node + '.');
+  process.exit(2);
+}
+
 const args = process.argv.slice(2);
 const url = args[0];
 const opt = (k, d) => { const i = args.indexOf('--' + k); return i > -1 ? args[i + 1] : d; };
