@@ -79,7 +79,7 @@
       </li>
       <li class="chip">
         <span class="chip-k">Document AI &amp; Vision</span>
-        <span class="chip-v">GLM-OCR &bull; 100% compile rate</span>
+        <span class="chip-v">GLM-OCR &bull; 0% → 82.4% compile (0.38 CER)</span>
       </li>
       <li class="chip">
         <span class="chip-k">Connectome Neuro-AI</span>
@@ -255,28 +255,26 @@
             Multimodal LoRA fine-tunes of GLM-OCR and Baidu OCR models to transform unconstrained handwritten mathematics into complete, standalone compilable LaTeX PDFs.
           </p>
           <ul class="metrics">
-            <li><b>Full PDF generation</b> — end-to-end compilable LaTeX documents</li>
-            <li><b>GLM-OCR + Baidu OCR</b> — multimodal vision-language fine-tunes</li>
-            <li><b>88.9% → 100%</b> compile rate via body-first preamble synthesis</li>
-            <li><b>15,829</b> scanned pages · <b>GGUF</b> models on Hugging Face</li>
+            <li><b>0% → 82.4%</b> compile rate (88.9% on v3.1)</li>
+            <li><b>0.382 mean CER</b> — 25.9% relative cut vs base</li>
+            <li><b>13,973</b> validated pairs from 34,080 raw scans</li>
+            <li><b>GGUF models</b> verified on Hugging Face</li>
           </ul>
           <div class="card-detail full-only">
             <p>
-              Translates raw handwritten mathematics, multi-line algebraic derivations, dense matrix systems,
-              summation/integral limits, and commutative diagrams directly into valid LaTeX source code
-              that compiles straight into publication-ready PDFs without human intervention. Combines
-              GLM-OCR and Baidu OCR architectures with custom tokenizers and vision-language adapter layers.
+              Fine-tunes GLM-OCR (0.9B) and Baidu OCR via LoRA on a single RTX 3060 12GB to transcribe
+              unconstrained handwritten university-level mathematics into complete, <code>pdflatex</code>-compilable
+              LaTeX documents. Takes the compile rate on the 700-page held-out test benchmark from 0.0% (frozen base)
+              to 82.4% (v4.1) / 88.9% (v3.1) while lifting Math-F1 to 0.827.
             </p>
             <p>
-              Solved the primary failure mode of mathematical OCR: autoregressive preamble ordering. Standard models fail
-              because they emit document preambles before seeing what symbols and environments the body requires.
-              Training on document bodies first and synthesizing exact mathematical packages (<code>amsmath</code>,
-              <code>amsfonts</code>, <code>tikz</code>) in a dedicated second pass lifted oracle compile rates from 82.4%
-              to 100% with zero cost in character error rate (CER 0.38).
+              Curated a 34,080-scan pipeline yielding 13,973 validated image–LaTeX pairs, with every training target
+              confirmed to compile before training. Solved autoregressive preamble failures by fine-tuning on
+              document bodies and emitting compilable standalone LaTeX.
             </p>
             <p class="card-caveat">
-              Evaluated against a strict 703-page zero-leak clean split (eliminating document-level source scan overlap)
-              alongside legacy splits. Pre-quantized GGUF models published for fast local, private inference.
+              Evaluated on a 700-page held-out test split across 15 logged metrics. Pre-quantized GGUF models
+              built and verified on GPU for private, offline local inference via llama.cpp.
             </p>
           </div>
           <p class="links">
@@ -629,7 +627,7 @@
         <div class="rec-what">
           <h3>Post Graduate Diploma in Applied Statistics (PGDAS)</h3>
           <p>Indian Statistical Institute, Kolkata (Online Program).
-             Qualified for the ISI PGDAS Admission Test 2026 and received a full tuition fee waiver of ₹4,50,000 (Full Scholarship).
+             Qualified for the ISI PGDAS Admission Test 2026 and received a full tuition fee waiver (Full Scholarship).
              Specialized coursework across mathematical statistics, probabilistic modeling, inference, and computational data analysis.</p>
         </div>
       </li>
