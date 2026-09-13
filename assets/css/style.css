@@ -649,8 +649,9 @@ body.past-hero .readout{ opacity:0; visibility:hidden; }
 }
 .contact-wrap{
   display:grid;
-  grid-template-columns:1fr auto;
-  gap:52px; align-items:center;
+  grid-template-columns:1fr 1.15fr;
+  gap:clamp(32px, 5vw, 56px);
+  align-items:start;
 }
 .contact-title{
   font-family:var(--serif); font-weight:400;
@@ -659,26 +660,40 @@ body.past-hero .readout{ opacity:0; visibility:hidden; }
   color:var(--txt-hi); margin:0 0 16px;
 }
 .contact-line{ max-width:48ch; color:var(--txt-dim); margin:0 0 24px; }
-.contact-mail{ margin:0 0 20px; }
-.contact-mail a{
+
+.contact-mails{
+  display:flex; flex-direction:column; gap:14px;
+  margin:0 0 24px;
+}
+.mail-item{ display:flex; flex-direction:column; gap:2px; }
+.mail-label{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--txt-dim);
+}
+.mail-item a{
   font-family:var(--mono);
-  font-size:clamp(1rem, 2.7vw, 1.42rem);
+  font-size:clamp(1rem, 2.2vw, 1.22rem);
   color:var(--gold);
   border-bottom:1px solid rgba(255,193,77,.35);
-  padding-bottom:3px;
+  padding-bottom:2px;
   word-break:break-word;
+  text-decoration:none;
+  display:inline-block;
+  transition:color .2s var(--ease), border-color .2s var(--ease);
 }
-.contact-mail a:hover{ color:var(--gold-hot); border-bottom-color:var(--gold-hot); }
+.mail-item a:hover{ color:var(--gold-hot); border-bottom-color:var(--gold-hot); }
+
 .contact-links{
-  list-style:none; margin:0; padding:0;
-  display:flex; flex-wrap:wrap; gap:22px;
-  font-family:var(--mono); font-size:12.5px;
+  list-style:none; margin:0 0 26px; padding:0;
+  display:flex; flex-wrap:wrap; gap:14px 20px;
+  font-family:var(--mono); font-size:12px;
   letter-spacing:.08em; text-transform:uppercase;
 }
 
 .portrait{ margin:0; }
 .portrait img{
-  width:clamp(150px, 26vw, 236px);
+  width:clamp(110px, 18vw, 160px);
   aspect-ratio:1;
   object-fit:cover;
   border-radius:50%;
@@ -687,6 +702,78 @@ body.past-hero .readout{ opacity:0; visibility:hidden; }
   transition:filter .5s var(--ease), border-color .5s var(--ease);
 }
 .portrait img:hover{ filter:grayscale(0) contrast(1); border-color:var(--gold); }
+
+/* ── Contact Form ── */
+.contact-form-pane{
+  background:rgba(13,16,25,.75);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:clamp(22px, 3.5vw, 36px);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+.form-title{
+  font-family:var(--serif); font-size:1.6rem; font-weight:400;
+  color:var(--txt-hi); margin:0 0 6px;
+}
+.form-desc{
+  font-size:13.5px; color:var(--txt-dim); margin:0 0 20px;
+}
+.contact-form{
+  display:flex; flex-direction:column; gap:16px;
+}
+.form-row{
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+}
+@media (max-width:540px){
+  .form-row{ grid-template-columns:1fr; }
+}
+.form-field{
+  display:flex; flex-direction:column; gap:6px;
+}
+.form-field label{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--txt-dim);
+}
+.form-field input,
+.form-field textarea{
+  width:100%;
+  background:rgba(6,7,12,.7);
+  border:1px solid var(--line-2);
+  border-radius:8px;
+  padding:11px 14px;
+  color:var(--txt-hi);
+  font-family:var(--sans);
+  font-size:14.5px;
+  line-height:1.5;
+  outline:none;
+  box-sizing:border-box;
+  transition:border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.form-field textarea{
+  resize:vertical; min-height:100px;
+}
+.form-field input:focus,
+.form-field textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(255,193,77,.18);
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder{
+  color:var(--txt-faint); font-size:13.5px;
+}
+.form-submit{
+  align-self:flex-start; cursor:pointer; margin-top:4px;
+}
+.form-status{
+  font-family:var(--mono); font-size:12.5px;
+  margin-top:6px; min-height:20px;
+  transition:all .3s var(--ease);
+}
+.form-status.is-success{ color:#2ed573; }
+.form-status.is-error{ color:var(--rose); }
 
 /* ══════════════════ footer ══════════════════ */
 

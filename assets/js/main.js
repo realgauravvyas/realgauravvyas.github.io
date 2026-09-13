@@ -576,6 +576,56 @@
     startIdle();
   }
 
+  /* ═════════════════════ 9b. CONTACT FORM ═════════════════════ */
+
+  function initContactForm() {
+    var form = $('#contactForm');
+    var status = $('#cf-status');
+    var submitBtn = $('#cf-submit');
+    if (!form || !status) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Send message';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending...';
+      }
+      status.className = 'form-status';
+      status.textContent = '';
+
+      var formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(function (res) {
+        if (res.ok) {
+          status.className = 'form-status is-success';
+          status.textContent = '✓ Thank you! Your message has been delivered directly to Gaurav’s inbox.';
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(function () {
+        // Fallback info if network fails
+        status.className = 'form-status is-error';
+        status.innerHTML = 'Could not send directly via form. Please email directly at <a href="mailto:g.vyas@op.iitg.ac.in" style="color:inherit;text-decoration:underline;">g.vyas@op.iitg.ac.in</a> or <a href="mailto:gaurav.vyas.1729@gmail.com" style="color:inherit;text-decoration:underline;">gaurav.vyas.1729@gmail.com</a>.';
+      })
+      .finally(function () {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
+      });
+    });
+  }
+
   /* ═════════════════════ 10. GO ═════════════════════ */
 
   function init() {
@@ -584,6 +634,7 @@
 
     initFilters();
     initScroll();
+    initContactForm();
 
     if (hero && baseCv && window.Sieve) {
       collectAnchors();

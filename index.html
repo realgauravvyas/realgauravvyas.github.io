@@ -621,22 +621,71 @@
       <p class="sec-idx">04</p>
       <h2 class="contact-title">Let’s talk.</h2>
       <p class="contact-line full-only">
-        Open to research collaborations, internships and anything where being right matters
-        more than being fast.
+        Open to research collaborations, computational mathematics &amp; AI projects, internships,
+        and anything where being right matters more than being fast.
       </p>
-      <p class="contact-mail">
-        <a href="mailto:g.vyas@op.iitg.ac.in">g.vyas@op.iitg.ac.in</a>
-      </p>
+
+      <div class="contact-mails">
+        <div class="mail-item">
+          <span class="mail-label">Academic &middot; IIT Guwahati</span>
+          <a href="mailto:g.vyas@op.iitg.ac.in">g.vyas@op.iitg.ac.in</a>
+        </div>
+        <div class="mail-item">
+          <span class="mail-label">Personal &middot; Direct</span>
+          <a href="mailto:gaurav.vyas.1729@gmail.com">gaurav.vyas.1729@gmail.com</a>
+        </div>
+      </div>
+
       <ul class="contact-links">
         <li><a href="https://github.com/realgauravvyas" rel="noopener">GitHub</a></li>
         <li><a href="https://huggingface.co/ctogaurav" rel="noopener">Hugging Face</a></li>
-        <li><a href="https://www.socialpsychology.org/member/gaurav-vyas" rel="noopener">Social Psychology Network (SPN)</a></li>
+        <li><a href="https://www.socialpsychology.org/member/gaurav-vyas" rel="noopener">SPN Profile</a></li>
         <li><a href="https://oeis.org/A181671" rel="noopener">OEIS A181671</a> · <a href="https://oeis.org/A190502" rel="noopener">A190502</a></li>
       </ul>
+
+      <figure class="portrait">
+        <img src="assets/img/gaurav.jpg" alt="Portrait of Gaurav Vyas" width="320" height="320" loading="lazy" decoding="async">
+      </figure>
     </div>
-    <figure class="portrait">
-      <img src="assets/img/gaurav.jpg" alt="Portrait of Gaurav Vyas" width="320" height="320" loading="lazy" decoding="async">
-    </figure>
+
+    <div class="contact-form-pane">
+      <form class="contact-form" id="contactForm" action="https://formsubmit.co/gaurav.vyas.1729@gmail.com" method="POST">
+        <input type="hidden" name="_cc" value="g.vyas@op.iitg.ac.in">
+        <input type="hidden" name="_subject" value="New message from Gaurav Vyas portfolio visitor">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
+
+        <h3 class="form-title">Send a message</h3>
+        <p class="form-desc full-only">Delivered straight to both my IITG and personal email inbox.</p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-name">Your Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Ada Lovelace" required autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Your Email</label>
+            <input type="email" id="cf-email" name="email" placeholder="ada@example.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="cf-topic">Subject</label>
+          <input type="text" id="cf-topic" name="topic" placeholder="Collaboration, Research, or Question">
+        </div>
+
+        <div class="form-field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary form-submit" id="cf-submit">
+          Send message <span aria-hidden="true">&rarr;</span>
+        </button>
+
+        <div class="form-status" id="cf-status" aria-live="polite"></div>
+      </form>
+    </div>
   </div>
 </section>
 
