@@ -66,21 +66,25 @@
     </h1>
 
     <p class="lede">
-      Student of <strong>IIT&nbsp;Guwahati</strong> in B.Sc. (Hons.) Data Science &amp; AI, and student of <strong>ISI&nbsp;Kolkata</strong> in the Post Graduate Diploma in Applied Statistics (competitive merit entrance, full scholarship). My degree research centers on <strong>deep-learning side-channel cryptanalysis</strong> (recovering a certified 128-bit AES key from physical power traces), <strong>vision-language mathematical document AI</strong>, and reinforcement learning — alongside extending and publishing <strong class="hl">OEIS&nbsp;A181671</strong> (to 10<sup>23</sup>) and <strong class="hl">OEIS&nbsp;A190502</strong> (to 2<sup>72</sup>).
+      Student of <strong>IIT&nbsp;Guwahati</strong> in B.Sc. (Hons.) Data Science &amp; Artificial Intelligence, with degree research in <strong>deep-learning side-channel cryptanalysis</strong> (certified 16/16 byte AES-128 key recovery from power traces), <strong>vision-language mathematical document AI</strong>, and <strong>computational neuroscience</strong> — complemented by advanced statistical training as a student of <strong>ISI&nbsp;Kolkata</strong> (Post Graduate Diploma in Applied Statistics, competitive merit entrance, full scholarship) alongside published mathematical records in the OEIS.
     </p>
 
     <ul class="chips" aria-label="Headline credentials">
       <li class="chip chip-gold">
-        <span class="chip-k">AES-128 recovered</span>
-        <span class="chip-v">16/16 bytes &middot; Side-channel ML</span>
+        <span class="chip-k">B.Sc. (Hons.) Data Science &amp; AI</span>
+        <span class="chip-v">IIT Guwahati &middot; Degree Research &middot; CGPA 7.75</span>
+      </li>
+      <li class="chip">
+        <span class="chip-k">Side-Channel AI</span>
+        <span class="chip-v">16/16 AES-128 Bytes &bull; Certified Rank</span>
       </li>
       <li class="chip">
         <span class="chip-k">Document AI &amp; Vision</span>
         <span class="chip-v">GLM-OCR &bull; 100% compile rate</span>
       </li>
       <li class="chip">
-        <span class="chip-k">OEIS Contributor</span>
-        <span class="chip-v">A181671 &amp; A190502 Published</span>
+        <span class="chip-k">Connectome Neuro-AI</span>
+        <span class="chip-v">DROSOMIND &bull; 166k Neurons</span>
       </li>
     </ul>
 
@@ -116,17 +120,18 @@
 <section class="ledger" aria-label="At a glance">
   <div class="wrap ledger-grid">
     <div class="ledger-item">
-      <dt>Student of</dt>
-      <dd>IIT Guwahati <span class="muted">(B.Sc. Hons. DS &amp; AI)</span><br>
-          ISI Kolkata <span class="muted">(PGDAS &middot; Full Scholarship)</span></dd>
+      <dt>B.Sc. Degree</dt>
+      <dd>IIT Guwahati <span class="muted">(Data Science &amp; AI)</span><br>
+          <span class="muted">Side-channel DL &middot; Vision AI &middot; CGPA 7.75</span></dd>
     </div>
     <div class="ledger-item">
-      <dt>Degree research</dt>
-      <dd>Deep-learning side-channel cryptanalysis,<br><span class="muted">document vision AI, reinforcement learning</span></dd>
+      <dt>Degree Research</dt>
+      <dd>Deep-learning cryptanalysis, document AI,<br><span class="muted">spiking neural connectome models</span></dd>
     </div>
     <div class="ledger-item">
-      <dt>Known for</dt>
-      <dd>Six terms of a prime sequence<br><span class="muted">that will outlive the website</span></dd>
+      <dt>PG Diploma</dt>
+      <dd>ISI Kolkata <span class="muted">(Applied Statistics)</span><br>
+          <span class="muted">Merit Entrance &middot; Full Scholarship</span></dd>
     </div>
     <div class="ledger-item">
       <dt>Reach me</dt>
@@ -149,8 +154,8 @@
 
     <div class="filters" role="group" aria-label="Filter projects by kind">
       <button class="filter is-on" data-filter="all" type="button">All <span class="filter-n">12</span></button>
+      <button class="filter" data-filter="ml" type="button">AI &amp; Data Science</button>
       <button class="filter" data-filter="research" type="button">Research</button>
-      <button class="filter" data-filter="ml" type="button">ML / AI</button>
       <button class="filter" data-filter="systems" type="button">Systems</button>
       <button class="filter" data-filter="shipped" type="button">Shipped</button>
     </div>
@@ -158,66 +163,11 @@
     <ol class="cards" id="cards">
 
       <!-- ── R1 = 2 ─────────────────────────────── -->
-      <li class="card card-feature" data-r="2" data-kind="research" id="p-oeis">
+      <li class="card card-feature" data-r="2" data-kind="research ml" id="p-scakr">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>1</sub></span><span class="rail-n">2</span></div>
         <div class="card-body cf-grid">
          <div class="cf-main">
-          <p class="kicker kicker-gold">Published mathematics</p>
-          <h3 class="card-title">Ramanujan primes in the OEIS (A181671 &amp; A190502)</h3>
-          <p class="card-line">
-            Extended the count of Ramanujan primes to 10<sup>23</sup> in base 10 and 2<sup>72</sup> in base 2 —
-            permanently, inside the reference work itself.
-          </p>
-          <ul class="metrics">
-            <li><b>A181671: a(18)–a(23)</b> accepted 15 Aug 2026</li>
-            <li><b>A190502: a(57)–a(72)</b> accepted 13 Sep 2026</li>
-            <li><b>2</b> independent π(x) algorithms agree</li>
-            <li><b>1</b> laptop, 12 threads, no cluster</li>
-          </ul>
-          <div class="card-detail full-only">
-            <p>
-              A bracketing-lemma pipeline: <code>primecount</code> at O(log&nbsp;Q) grid endpoints,
-              a 128-bit segmented sieve, and Dusart 2010 / Johnston 2022 analytic tail bounds.
-            </p>
-            <p>
-              The part worth defending is the anchoring. Every π-value the pipeline leans on matches
-              the published b-files of <a href="https://oeis.org/A007053" rel="noopener">A007053</a>
-              and <a href="https://oeis.org/A190502" rel="noopener">A190502</a>
-              exactly — computed by different people, with different code, years earlier.
-              So the anchors need no re-running to be trusted, and the only quantity this work
-              uniquely contributes is one small integer per term.
-            </p>
-            <p class="card-note">
-              <b>Accepted in OEIS:</b> On 13 Sep 2026, the base-2 sibling sequence (<a href="https://oeis.org/A190502" rel="noopener">OEIS A190502</a>, a(57)–a(72)) was reviewed and approved by editor Joerg Arndt. The official <a href="https://oeis.org/A190502/b190502.txt" rel="noopener">b-file</a> now extends through <i>n</i>&nbsp;=&nbsp;72 and links directly to <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-2-56" rel="noopener">ramanujan-primes-beyond-2-56</a>.
-            </p>
-          </div>
-          <p class="links">
-            <a class="link-strong" href="https://oeis.org/A181671" rel="noopener">OEIS A181671 (Base 10) ↗</a>
-            <a class="link-strong" href="https://oeis.org/A190502" rel="noopener">OEIS A190502 (Base 2) ↗</a>
-            <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-1e19" rel="noopener">A181671 Source ↗</a>
-            <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-2-56" rel="noopener">A190502 Source ↗</a>
-          </p>
-         </div>
-
-         <aside class="cf-cite full-only" aria-label="The OEIS records">
-           <p class="cf-cite-head">the records themselves</p>
-           <pre class="cf-cite-body"><span class="cf-f">%N</span> A181671 Ramanujan primes &lt; 10^n
-<span class="cf-f">%E</span> <b>a(18)-a(23) from _Gaurav Vyas_,
-    Aug 15 2026</b>
-<span class="cf-f">%N</span> A190502 Ramanujan primes &lt; 2^n
-<span class="cf-f">%H</span> <b>b190502.txt (n=0..72)</b>
-<span class="cf-f">%H</span> <b>a(57)-a(72) source &amp; code:
-    _Gaurav Vyas_, Sep 13 2026</b></pre>
-           <p class="cf-cite-foot">oeis.org/A181671 &middot; oeis.org/A190502</p>
-         </aside>
-        </div>
-      </li>
-
-      <!-- ── R2 = 11 ────────────────────────────── -->
-      <li class="card" data-r="11" data-kind="research" id="p-scakr">
-        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>2</sub></span><span class="rail-n">11</span></div>
-        <div class="card-body">
-          <p class="kicker">Security research</p>
+          <p class="kicker kicker-gold">IIT Guwahati Degree Research &bull; Deep Learning &bull; Security</p>
           <h3 class="card-title">A 128-bit AES key, out of power traces</h3>
           <p class="card-line">
             Deep-learning side-channel attack with certified key enumeration, on real ASCAD traces.
@@ -226,6 +176,7 @@
             <li><b>16/16</b> key bytes recovered</li>
             <li><b>log<sub>2</sub> rank ≤ 1</b> across 3 seeds</li>
             <li><b>220 → 6.7</b> traces needed at a 2<sup>32</sup> budget</li>
+            <li><b>Domain adaptation</b> under desynchronisation</li>
           </ul>
           <div class="card-detail full-only">
             <p>
@@ -242,13 +193,55 @@
             </p>
           </div>
           <p class="links">
-            <span class="link-note">IIT Guwahati degree project · code on request</span>
+            <span class="link-note">IIT Guwahati B.Sc. degree project · code on request</span>
+          </p>
+         </div>
+
+         <aside class="cf-cite full-only" aria-label="Target and certified recovery metrics">
+           <p class="cf-cite-head">Target &amp; Certified Metrics</p>
+           <pre class="cf-cite-body"><span class="cf-f">Target</span>    AES-128 on 8-bit AVR (ASCAD)
+<span class="cf-f">Recovery</span>  <b>16 / 16 bytes (Full 128-bit key)</b>
+<span class="cf-f">Rank</span>      <b>log₂ rank ≤ 1 across 3 seeds</b>
+<span class="cf-f">Entropy</span>   Guessing entropy 0 at 2k traces
+<span class="cf-f">Status</span>    <b>Certified Key Enumeration</b></pre>
+           <p class="cf-cite-foot">IIT Guwahati B.Sc. (Hons.) Degree Project</p>
+         </aside>
+        </div>
+      </li>
+
+      <!-- ── R2 = 11 ────────────────────────────── -->
+      <li class="card" data-r="11" data-kind="ml research" id="p-drosomind">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>2</sub></span><span class="rail-n">11</span></div>
+        <div class="card-body">
+          <p class="kicker">Computational neuroscience &bull; Spiking Neural Networks</p>
+          <h3 class="card-title">DROSOMIND — In-Silico Connectome Organism</h3>
+          <p class="card-line">
+            A closed-loop cybernetic organism driven by the complete 3D male fruit fly connectome
+            (166k neurons, 125M synapses) from Google Research’s landmark <i>Cell</i> 2026 publication.
+          </p>
+          <ul class="metrics">
+            <li><b>166k</b> neurons &bull; <b>125M</b> synapses rendered</li>
+            <li><b>16-wedge</b> ring attractor heading compass</li>
+            <li><b>~34 ms IPI</b> courtship song Web Audio synthesis</li>
+            <li><b>100%</b> in-browser WebGL, <b>0</b> dependencies</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              Directly models Google's newly mapped sexual dimorphism discovery: the male-specific bilateral
+              P1 courtship hub that coordinates unilateral wing singing, paired with lobula giant-fiber
+              escape reflexes and optomotor flow. Runs a biophysical Leaky Integrate-and-Fire spiking
+              neural network coupled to an articulated 3D <i>Drosophila</i> body in real time.
+            </p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://realgauravvyas.github.io/drosomind/" rel="noopener">Live simulation ↗</a>
+            <a href="https://github.com/realgauravvyas/drosomind" rel="noopener">Code &amp; paper links ↗</a>
           </p>
         </div>
       </li>
 
       <!-- ── R3 = 17 ────────────────────────────── -->
-      <li class="card" data-r="17" data-kind="ml" id="p-ocr">
+      <li class="card" data-r="17" data-kind="ml systems" id="p-ocr">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>3</sub></span><span class="rail-n">17</span></div>
         <div class="card-body">
           <p class="kicker">Vision-Language &bull; Document AI</p>
@@ -289,10 +282,10 @@
       </li>
 
       <!-- ── R4 = 29 ────────────────────────────── -->
-      <li class="card card-null" data-r="29" data-kind="research" id="p-chess">
+      <li class="card card-null" data-r="29" data-kind="research ml" id="p-chess">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>4</sub></span><span class="rail-n">29</span></div>
         <div class="card-body">
-          <p class="kicker kicker-null">Null result</p>
+          <p class="kicker kicker-null">Reinforcement Learning &bull; Null result</p>
           <h3 class="card-title">Self-play RL that didn’t work — and the report that says so</h3>
           <p class="card-line">
             A 760,717-parameter AlphaZero-style chess engine, and an honest account of its failure.
@@ -323,10 +316,34 @@
       </li>
 
       <!-- ── R5 = 41 ────────────────────────────── -->
-      <li class="card" data-r="41" data-kind="systems" id="p-routeguard">
+      <li class="card" data-r="41" data-kind="research ml" id="p-drishti">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>5</sub></span><span class="rail-n">41</span></div>
         <div class="card-body">
-          <p class="kicker">Agentic systems</p>
+          <p class="kicker">Data Science &bull; Probabilistic Belief Modeling</p>
+          <h3 class="card-title">Drishti — Post-Disaster Belief Resolution</h3>
+          <p class="card-line">
+            A post-disaster information-fog resolver: calibrated belief over settlement-level
+            reports, for when the reports contradict each other.
+          </p>
+          <ul class="metrics">
+            <li><b>Calibrated belief</b> — Bayesian inference over conflicting field data</li>
+            <li><b>Graph routing</b> — emergency logistics over damaged networks</li>
+            <li><b>Zero dependency</b> — runs locally on portable field hardware</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              Resolves conflicting crisis reports from ground scouts, emergency responders, and remote sensors during disaster response. Employs probabilistic inference and Bayesian belief networks to filter noise and misinformation, generating high-confidence situation maps and logistics routes.
+            </p>
+          </div>
+          <p class="links"><a class="link-strong" href="https://github.com/realgauravvyas/drishti" rel="noopener">Code ↗</a></p>
+        </div>
+      </li>
+
+      <!-- ── R6 = 47 ────────────────────────────── -->
+      <li class="card" data-r="47" data-kind="systems ml" id="p-routeguard">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>6</sub></span><span class="rail-n">47</span></div>
+        <div class="card-body">
+          <p class="kicker">Agentic systems &bull; Symbolic Planning</p>
           <h3 class="card-title">RouteGuard — supply-chain recovery without an LLM</h3>
           <p class="card-line">
             A symbolic, model-based planning agent for autonomous retail recovery.
@@ -352,39 +369,11 @@
         </div>
       </li>
 
-      <!-- ── R6 = 47 ────────────────────────────── -->
-      <li class="card" data-r="47" data-kind="shipped" id="p-carbon">
-        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>6</sub></span><span class="rail-n">47</span></div>
-        <div class="card-body">
-          <p class="kicker">Product</p>
-          <h3 class="card-title">CarbonCampus — campus carbon accounting, offline</h3>
-          <p class="card-line">
-            A PWA that computes a campus footprint with no backend and no network connection.
-          </p>
-          <ul class="metrics">
-            <li><b>Offline-first</b> — IndexedDB, no server required</li>
-            <li><b>One engine</b> shared by the app and the API</li>
-            <li><b>100%</b> client-side carbon accounting</li>
-          </ul>
-          <div class="card-detail full-only">
-            <p>
-              An npm workspace where the emission-factor registry and computation engine are
-              imported by both the PWA and the Fastify server, so the offline and online paths
-              cannot quietly disagree with each other. Deployed backend-less on purpose.
-            </p>
-          </div>
-          <p class="links">
-            <a class="link-strong" href="https://realgauravvyas.github.io/carboncampus/" rel="noopener">Live demo ↗</a>
-            <a href="https://github.com/realgauravvyas/carboncampus" rel="noopener">Code ↗</a>
-          </p>
-        </div>
-      </li>
-
       <!-- ── R7 = 59 ────────────────────────────── -->
-      <li class="card" data-r="59" data-kind="shipped" id="p-millennium">
+      <li class="card" data-r="59" data-kind="research" id="p-millennium">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>7</sub></span><span class="rail-n">59</span></div>
         <div class="card-body">
-          <p class="kicker">Teaching</p>
+          <p class="kicker">Computational Mathematics</p>
           <h3 class="card-title">The seven Millennium Prize Problems, simulated</h3>
           <p class="card-line">
             All seven explained for non-mathematicians, each with real mathematics running live
@@ -411,70 +400,10 @@
       </li>
 
       <!-- ── R8 = 67 ────────────────────────────── -->
-      <li class="card" data-r="67" data-kind="systems" id="p-voltfall">
+      <li class="card card-compact" data-r="67" data-kind="research shipped" id="p-surprises">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>8</sub></span><span class="rail-n">67</span></div>
         <div class="card-body">
-          <p class="kicker">Shipped</p>
-          <h3 class="card-title">Voltfall — a 94 KB Android roguelite</h3>
-          <p class="card-line">
-            A custom engine on SurfaceView. Every sprite and every sound is generated at runtime.
-          </p>
-          <ul class="metrics">
-            <li><b>~94 KB</b> release APK</li>
-            <li><b>0</b> third-party runtime dependencies</li>
-            <li><b>No</b> INTERNET permission at all</li>
-          </ul>
-          <div class="card-detail full-only">
-            <p>
-              The size is the product, not an accident of scope. Declaring no network permission is
-              precisely what lets the Play Data Safety form honestly answer “no data collected” —
-              adding a single ads or analytics SDK would invalidate the privacy policy, the EULA and
-              that answer all at once.
-            </p>
-          </div>
-          <p class="links">
-            <a href="https://github.com/realgauravvyas/voltfall" rel="noopener">Code ↗</a>
-            <a href="https://github.com/realgauravvyas/blackout-studio" rel="noopener">Blackout Studio ↗</a>
-          </p>
-        </div>
-      </li>
-
-      <!-- ── R9 = 71 ────────────────────────────── -->
-      <li class="card" data-r="71" data-kind="ml" id="p-drosomind">
-        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>9</sub></span><span class="rail-n">71</span></div>
-        <div class="card-body">
-          <p class="kicker">Computational neuroscience</p>
-          <h3 class="card-title">DROSOMIND — In-Silico Connectome Organism</h3>
-          <p class="card-line">
-            A closed-loop cybernetic organism driven by the complete 3D male fruit fly connectome
-            (166k neurons, 125M synapses) from Google Research’s landmark <i>Cell</i> 2026 publication.
-          </p>
-          <ul class="metrics">
-            <li><b>166k</b> neurons &bull; <b>125M</b> synapses rendered</li>
-            <li><b>16-wedge</b> ring attractor heading compass</li>
-            <li><b>~34 ms IPI</b> courtship song Web Audio synthesis</li>
-            <li><b>100%</b> in-browser WebGL, <b>0</b> dependencies</li>
-          </ul>
-          <div class="card-detail full-only">
-            <p>
-              Directly models Google's newly mapped sexual dimorphism discovery: the male-specific bilateral
-              P1 courtship hub that coordinates unilateral wing singing, paired with lobula giant-fiber
-              escape reflexes and optomotor flow. Runs a biophysical Leaky Integrate-and-Fire spiking
-              neural network coupled to an articulated 3D <i>Drosophila</i> body in real time.
-            </p>
-          </div>
-          <p class="links">
-            <a class="link-strong" href="https://realgauravvyas.github.io/drosomind/" rel="noopener">Live simulation ↗</a>
-            <a href="https://github.com/realgauravvyas/drosomind" rel="noopener">Code &amp; paper links ↗</a>
-          </p>
-        </div>
-      </li>
-
-      <!-- ── R10 = 97 ───────────────────────────── -->
-      <li class="card card-compact" data-r="97" data-kind="shipped" id="p-surprises">
-        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>10</sub></span><span class="rail-n">97</span></div>
-        <div class="card-body">
-          <p class="kicker">Interactive</p>
+          <p class="kicker">Interactive Mathematics</p>
           <h3 class="card-title">Mathematical Surprises</h3>
           <p class="card-line">
             Interactive mathematics and physics visualisations — the results that don’t look
@@ -487,23 +416,51 @@
         </div>
       </li>
 
-      <!-- ── R11 = 101 ──────────────────────────── -->
-      <li class="card card-compact" data-r="101" data-kind="ml" id="p-drishti">
-        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>11</sub></span><span class="rail-n">101</span></div>
+      <!-- ── R9 = 71 ────────────────────────────── -->
+      <li class="card" data-r="71" data-kind="research" id="p-oeis">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>9</sub></span><span class="rail-n">71</span></div>
         <div class="card-body">
-          <p class="kicker">Research</p>
-          <h3 class="card-title">Drishti</h3>
+          <p class="kicker kicker-gold">Published mathematics &bull; Sequence Records</p>
+          <h3 class="card-title">Ramanujan primes in the OEIS (A181671 &amp; A190502)</h3>
           <p class="card-line">
-            A post-disaster information-fog resolver: calibrated belief over settlement-level
-            reports, for when the reports contradict each other.
+            Extended the count of Ramanujan primes to 10<sup>23</sup> in base 10 and 2<sup>72</sup> in base 2 —
+            permanently, inside the reference work itself.
           </p>
-          <p class="links"><a href="https://github.com/realgauravvyas/drishti" rel="noopener">Code ↗</a></p>
+          <ul class="metrics">
+            <li><b>A181671: a(18)–a(23)</b> accepted 15 Aug 2026</li>
+            <li><b>A190502: a(57)–a(72)</b> accepted 13 Sep 2026</li>
+            <li><b>2</b> independent π(x) algorithms agree</li>
+            <li><b>1</b> laptop, 12 threads, no cluster</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              A bracketing-lemma pipeline: <code>primecount</code> at O(log&nbsp;Q) grid endpoints,
+              a 128-bit segmented sieve, and Dusart 2010 / Johnston 2022 analytic tail bounds.
+            </p>
+            <p>
+              The part worth defending is the anchoring. Every π-value the pipeline leans on matches
+              the published b-files of <a href="https://oeis.org/A007053" rel="noopener">A007053</a>
+              and <a href="https://oeis.org/A190502" rel="noopener">A190502</a>
+              exactly — computed by different people, with different code, years earlier.
+              So the anchors need no re-running to be trusted, and the only quantity this work
+              uniquely contributes is one small integer per term.
+            </p>
+            <p class="card-note">
+              <b>Accepted in OEIS:</b> On 13 Sep 2026, the base-2 sibling sequence (<a href="https://oeis.org/A190502" rel="noopener">OEIS A190502</a>, a(57)–a(72)) was reviewed and approved by editor Joerg Arndt. The official <a href="https://oeis.org/A190502/b190502.txt" rel="noopener">b-file</a> now extends through <i>n</i>&nbsp;=&nbsp;72 and links directly to <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-2-56" rel="noopener">ramanujan-primes-beyond-2-56</a>.
+            </p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://oeis.org/A181671" rel="noopener">OEIS A181671 (Base 10) ↗</a>
+            <a class="link-strong" href="https://oeis.org/A190502" rel="noopener">OEIS A190502 (Base 2) ↗</a>
+            <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-1e19" rel="noopener">A181671 Source ↗</a>
+            <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-2-56" rel="noopener">A190502 Source ↗</a>
+          </p>
         </div>
       </li>
 
-      <!-- ── R12 = 107 ──────────────────────────── -->
-      <li class="card" data-r="107" data-kind="systems" id="p-hemispher">
-        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>12</sub></span><span class="rail-n">107</span></div>
+      <!-- ── R10 = 97 ───────────────────────────── -->
+      <li class="card" data-r="97" data-kind="systems ml" id="p-hemispher">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>10</sub></span><span class="rail-n">97</span></div>
         <div class="card-body">
           <p class="kicker">Systems &bull; Computer Vision</p>
           <h3 class="card-title">HemispheR-py &amp; Android — Canopy Photography from First Principles</h3>
@@ -532,6 +489,63 @@
           <p class="links">
             <a class="link-strong" href="https://github.com/realgauravvyas/hemispheR-py" rel="noopener">Python Package ↗</a>
             <a href="https://github.com/realgauravvyas/hemispheR-android" rel="noopener">Android App ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R11 = 101 ──────────────────────────── -->
+      <li class="card" data-r="101" data-kind="shipped systems" id="p-carbon">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>11</sub></span><span class="rail-n">101</span></div>
+        <div class="card-body">
+          <p class="kicker">Product &bull; Systems</p>
+          <h3 class="card-title">CarbonCampus — campus carbon accounting, offline</h3>
+          <p class="card-line">
+            A PWA that computes a campus footprint with no backend and no network connection.
+          </p>
+          <ul class="metrics">
+            <li><b>Offline-first</b> — IndexedDB, no server required</li>
+            <li><b>One engine</b> shared by the app and the API</li>
+            <li><b>100%</b> client-side carbon accounting</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              An npm workspace where the emission-factor registry and computation engine are
+              imported by both the PWA and the Fastify server, so the offline and online paths
+              cannot quietly disagree with each other. Deployed backend-less on purpose.
+            </p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://realgauravvyas.github.io/carboncampus/" rel="noopener">Live demo ↗</a>
+            <a href="https://github.com/realgauravvyas/carboncampus" rel="noopener">Code ↗</a>
+          </p>
+        </div>
+      </li>
+
+      <!-- ── R12 = 107 ──────────────────────────── -->
+      <li class="card" data-r="107" data-kind="systems shipped" id="p-voltfall">
+        <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>12</sub></span><span class="rail-n">107</span></div>
+        <div class="card-body">
+          <p class="kicker">Game Development &bull; Engine</p>
+          <h3 class="card-title">Voltfall — a 94 KB Android roguelite</h3>
+          <p class="card-line">
+            A custom engine on SurfaceView. Every sprite and every sound is generated at runtime.
+          </p>
+          <ul class="metrics">
+            <li><b>~94 KB</b> release APK</li>
+            <li><b>0</b> third-party runtime dependencies</li>
+            <li><b>No</b> INTERNET permission at all</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              The size is the product, not an accident of scope. Declaring no network permission is
+              precisely what lets the Play Data Safety form honestly answer “no data collected” —
+              adding a single ads or analytics SDK would invalidate the privacy policy, the EULA and
+              that answer all at once.
+            </p>
+          </div>
+          <p class="links">
+            <a href="https://github.com/realgauravvyas/voltfall" rel="noopener">Code ↗</a>
+            <a href="https://github.com/realgauravvyas/blackout-studio" rel="noopener">Blackout Studio ↗</a>
           </p>
         </div>
       </li>
