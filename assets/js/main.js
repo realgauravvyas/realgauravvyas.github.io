@@ -18,6 +18,23 @@
   var baseCv   = $('#sieveBase');
   var glowCv   = $('#sieveGlow');
 
+  var COL_DEFAULT = {
+    pending:   [122, 134, 156],
+    composite: [122, 134, 156],
+    prime:     [232, 241, 255],
+    gold:      [255, 193,  77],
+    goldHot:   [255, 233, 176],
+    cyan:      [ 86, 220, 255]
+  };
+  var COL_BW = {
+    pending:   [ 90,  90,  90],
+    composite: [ 65,  65,  65],
+    prime:     [255, 255, 255],
+    gold:      [255, 255, 255],
+    goldHot:   [255, 255, 255],
+    cyan:      [215, 215, 215]
+  };
+  var isBw = false;
   var COL = {
     pending:   [122, 134, 156],
     composite: [122, 134, 156],
@@ -185,9 +202,10 @@
     if (t.sweep > 0 && t.sweep < 1) {
       var ly = offY + (bandRow + 0.5) * cell;
       var g = bctx.createLinearGradient(0, 0, W, 0);
-      g.addColorStop(0,   'rgba(255,193,77,0)');
-      g.addColorStop(0.5, 'rgba(255,193,77,.42)');
-      g.addColorStop(1,   'rgba(255,193,77,0)');
+      var sc = isBw ? 'rgba(255,255,255,' : 'rgba(255,193,77,';
+      g.addColorStop(0,   sc + '0)');
+      g.addColorStop(0.5, sc + (isBw ? '.6)' : '.42)'));
+      g.addColorStop(1,   sc + '0)');
       bctx.fillStyle = g;
       bctx.fillRect(0, ly, W, 1);
     }
@@ -199,7 +217,9 @@
       var q = cellXY(it.i);
       var isAnchor = Object.prototype.hasOwnProperty.call(anchors, it.i);
       var bloom = 1 - Math.abs(it.ig - 0.55) * 1.2;   /* brightest as it lights */
-      bctx.shadowColor = 'rgba(255,193,77,' + (0.55 * it.ig).toFixed(3) + ')';
+      bctx.shadowColor = isBw
+        ? ('rgba(255,255,255,' + (0.7 * it.ig).toFixed(3) + ')')
+        : ('rgba(255,193,77,' + (0.55 * it.ig).toFixed(3) + ')');
       bctx.shadowBlur = (isAnchor ? 16 : 9) * it.ig;
       bctx.fillStyle = rgba(
         bloom > 0.55 ? COL.goldHot : COL.gold,
@@ -469,6 +489,43 @@
   });
   try {
     if (localStorage.getItem('gv-skim') === '1') setSkim(true, false);
+  } catch (err) { /* ignore */ }
+
+  /* ═════════════════════ 6b. BLACK & WHITE MODE ═════════════════════ */
+
+  var bwBtn = $('#bwToggle');
+  function setBw(on, persist) {
+    isBw = !!on;
+    document.body.classList.toggle('bw-mode', isBw);
+    if (bwBtn) {
+      bwBtn.setAttribute('aria-pressed', isBw ? 'true' : 'false');
+      var lbl = $('.mode-label', bwBtn);
+      if (lbl) lbl.textContent = isBw ? 'B&W (On)' : 'B&W';
+    }
+    Object.assign(COL, isBw ? COL_BW : COL_DEFAULT);
+    if (persist !== false) {
+      try { localStorage.setItem('gv-bw', isBw ? '1' : '0'); } catch (err) { /* private mode */ }
+    }
+    if (introDone) {
+      requestAnimationFrame(function () {
+        draw({ fade: 1, sieveK: 1e9, primeUp: 1, sweep: 1 });
+      });
+    }
+  }
+  if (bwBtn) {
+    bwBtn.addEventListener('click', function () {
+      setBw(!isBw);
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'b' && e.key !== 'B') return;
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    setBw(!isBw);
+  });
+  try {
+    if (localStorage.getItem('gv-bw') === '1') setBw(true, false);
   } catch (err) { /* ignore */ }
 
   /* ═════════════════════ 7. FILTERS ═════════════════════ */

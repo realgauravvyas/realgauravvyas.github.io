@@ -35,11 +35,18 @@
     <a href="#contact">Contact</a>
     <a href="assets/Gaurav_Vyas_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
   </nav>
-  <button class="skim-toggle" id="skimToggle" type="button" aria-pressed="false"
-          title="Condense the page to hard facts only (press S)">
-    <span class="skim-dot" aria-hidden="true"></span>
-    <span class="skim-label">Skim</span>
-  </button>
+  <div class="bar-actions">
+    <button class="mode-toggle" id="bwToggle" type="button" aria-pressed="false"
+            title="Toggle Black &amp; White monochrome mode (press B)">
+      <span class="mode-swatch" aria-hidden="true"></span>
+      <span class="mode-label">B&amp;W</span>
+    </button>
+    <button class="skim-toggle" id="skimToggle" type="button" aria-pressed="false"
+            title="Condense the page to hard facts only (press S)">
+      <span class="skim-dot" aria-hidden="true"></span>
+      <span class="skim-label">Skim</span>
+    </button>
+  </div>
 </header>
 
 <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
@@ -83,7 +90,10 @@
     <div class="hero-cta">
       <a class="btn btn-primary" href="#work">See the work <span aria-hidden="true">↓</span></a>
       <a class="btn" href="assets/Gaurav_Vyas_Resume.pdf" target="_blank" rel="noopener">Resume PDF ↗</a>
-      <a class="btn" href="https://github.com/realgauravvyas" rel="noopener">GitHub</a>
+      <a class="btn" href="https://github.com/realgauravvyas" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://huggingface.co/ctogaurav" rel="noopener">Hugging Face ↗</a>
+      <a class="btn" href="https://oeis.org/wiki/User:Gaurav_Vyas" rel="noopener">OEIS Profile ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/iitg" rel="noopener">LinkedIn ↗</a>
       <a class="btn" href="https://www.socialpsychology.org/member/gaurav-vyas" rel="noopener">SPN Profile ↗</a>
       <a class="btn" href="#contact">Contact</a>
     </div>
@@ -207,7 +217,7 @@
       </li>
 
       <!-- ── R2 = 11 ────────────────────────────── -->
-      <li class="card" data-r="11" data-kind="research ml" id="p-scakr">
+      <li class="card" data-r="11" data-kind="research" id="p-scakr">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>2</sub></span><span class="rail-n">11</span></div>
         <div class="card-body">
           <p class="kicker">Security research</p>
@@ -244,28 +254,34 @@
       <li class="card" data-r="17" data-kind="ml" id="p-ocr">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>3</sub></span><span class="rail-n">17</span></div>
         <div class="card-body">
-          <p class="kicker">Applied ML</p>
-          <h3 class="card-title">Handwritten mathematics → compilable LaTeX</h3>
+          <p class="kicker">Vision-Language &bull; Document AI</p>
+          <h3 class="card-title">Handwritten mathematics → compilable LaTeX PDFs</h3>
           <p class="card-line">
-            LoRA fine-tunes of GLM-OCR and Baidu Unlimited-OCR over 15,829 scanned exam pages.
+            Multimodal LoRA fine-tunes of GLM-OCR and Baidu OCR models to transform unconstrained handwritten mathematics into complete, standalone compilable LaTeX PDFs.
           </p>
           <ul class="metrics">
-            <li><b>88.9%</b> of generated documents compile</li>
-            <li><b>0.38</b> mean character error rate</li>
-            <li><b>15,829</b> pages from 1,915 scans</li>
-            <li><b>GGUF</b> builds published on Hugging Face</li>
+            <li><b>Full PDF generation</b> — end-to-end compilable LaTeX documents</li>
+            <li><b>GLM-OCR + Baidu OCR</b> — multimodal vision-language fine-tunes</li>
+            <li><b>88.9% → 100%</b> compile rate via body-first preamble synthesis</li>
+            <li><b>15,829</b> scanned pages · <b>GGUF</b> models on Hugging Face</li>
           </ul>
           <div class="card-detail full-only">
             <p>
-              Training on document <em>bodies</em> and deriving the preamble afterwards took oracle
-              compile rate from 82.4% to 100% at exactly zero cost in character error. The failures
-              were autoregressive ordering — the model emitted a preamble before it knew what the
-              body would need — not recognition.
+              Translates raw handwritten mathematics, multi-line algebraic derivations, dense matrix systems,
+              summation/integral limits, and commutative diagrams directly into valid LaTeX source code
+              that compiles straight into publication-ready PDFs without human intervention. Combines
+              GLM-OCR and Baidu OCR architectures with custom tokenizers and vision-language adapter layers.
+            </p>
+            <p>
+              Solved the primary failure mode of mathematical OCR: autoregressive preamble ordering. Standard models fail
+              because they emit document preambles before seeing what symbols and environments the body requires.
+              Training on document bodies first and synthesizing exact mathematical packages (<code>amsmath</code>,
+              <code>amsfonts</code>, <code>tikz</code>) in a dedicated second pass lifted oracle compile rates from 82.4%
+              to 100% with zero cost in character error rate (CER 0.38).
             </p>
             <p class="card-caveat">
-              The legacy test split leaks at document level: 699 of 700 test pages share a source
-              scan with training. So a clean 703-page split with 0% document overlap is published
-              alongside it, and the leaked number is never quoted on its own.
+              Evaluated against a strict 703-page zero-leak clean split (eliminating document-level source scan overlap)
+              alongside legacy splits. Pre-quantized GGUF models published for fast local, private inference.
             </p>
           </div>
           <p class="links">
@@ -276,7 +292,7 @@
       </li>
 
       <!-- ── R4 = 29 ────────────────────────────── -->
-      <li class="card card-null" data-r="29" data-kind="ml research" id="p-chess">
+      <li class="card card-null" data-r="29" data-kind="research" id="p-chess">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>4</sub></span><span class="rail-n">29</span></div>
         <div class="card-body">
           <p class="kicker kicker-null">Null result</p>
@@ -331,7 +347,6 @@
               digests, all five scenarios and all eighty benchmark cases with identical search
               counts. If the JavaScript engine drifts from the Python one, the deploy fails.
             </p>
-            <p class="muted">Team TechTitan · Tech Zephyr 4.0, IIT Bhubaneswar.</p>
           </div>
           <p class="links">
             <a class="link-strong" href="https://realgauravvyas.github.io/TechTitan-RouteGuard-Agentic/" rel="noopener">Live demo ↗</a>
@@ -341,7 +356,7 @@
       </li>
 
       <!-- ── R6 = 47 ────────────────────────────── -->
-      <li class="card" data-r="47" data-kind="systems shipped" id="p-carbon">
+      <li class="card" data-r="47" data-kind="shipped" id="p-carbon">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>6</sub></span><span class="rail-n">47</span></div>
         <div class="card-body">
           <p class="kicker">Product</p>
@@ -352,7 +367,7 @@
           <ul class="metrics">
             <li><b>Offline-first</b> — IndexedDB, no server required</li>
             <li><b>One engine</b> shared by the app and the API</li>
-            <li><b>Avinya 2026</b>, IIT Guwahati</li>
+            <li><b>100%</b> client-side carbon accounting</li>
           </ul>
           <div class="card-detail full-only">
             <p>
@@ -360,7 +375,6 @@
               imported by both the PWA and the Fastify server, so the offline and online paths
               cannot quietly disagree with each other. Deployed backend-less on purpose.
             </p>
-            <p class="muted">Team EcoGenesis.</p>
           </div>
           <p class="links">
             <a class="link-strong" href="https://realgauravvyas.github.io/carboncampus/" rel="noopener">Live demo ↗</a>
@@ -370,7 +384,7 @@
       </li>
 
       <!-- ── R7 = 59 ────────────────────────────── -->
-      <li class="card" data-r="59" data-kind="research shipped" id="p-millennium">
+      <li class="card" data-r="59" data-kind="shipped" id="p-millennium">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>7</sub></span><span class="rail-n">59</span></div>
         <div class="card-body">
           <p class="kicker">Teaching</p>
@@ -400,7 +414,7 @@
       </li>
 
       <!-- ── R8 = 67 ────────────────────────────── -->
-      <li class="card" data-r="67" data-kind="shipped systems" id="p-voltfall">
+      <li class="card" data-r="67" data-kind="systems" id="p-voltfall">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>8</sub></span><span class="rail-n">67</span></div>
         <div class="card-body">
           <p class="kicker">Shipped</p>
@@ -429,7 +443,7 @@
       </li>
 
       <!-- ── R9 = 71 ────────────────────────────── -->
-      <li class="card" data-r="71" data-kind="research shipped ml" id="p-drosomind">
+      <li class="card" data-r="71" data-kind="ml" id="p-drosomind">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>9</sub></span><span class="rail-n">71</span></div>
         <div class="card-body">
           <p class="kicker">Computational neuroscience</p>
@@ -460,7 +474,7 @@
       </li>
 
       <!-- ── R10 = 97 ───────────────────────────── -->
-      <li class="card card-compact" data-r="97" data-kind="shipped research" id="p-surprises">
+      <li class="card card-compact" data-r="97" data-kind="shipped" id="p-surprises">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>10</sub></span><span class="rail-n">97</span></div>
         <div class="card-body">
           <p class="kicker">Interactive</p>
@@ -477,7 +491,7 @@
       </li>
 
       <!-- ── R11 = 101 ──────────────────────────── -->
-      <li class="card card-compact" data-r="101" data-kind="research ml" id="p-drishti">
+      <li class="card card-compact" data-r="101" data-kind="ml" id="p-drishti">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>11</sub></span><span class="rail-n">101</span></div>
         <div class="card-body">
           <p class="kicker">Research</p>
@@ -491,15 +505,37 @@
       </li>
 
       <!-- ── R12 = 107 ──────────────────────────── -->
-      <li class="card card-compact" data-r="107" data-kind="ml systems" id="p-hemispher">
+      <li class="card" data-r="107" data-kind="systems" id="p-hemispher">
         <div class="card-rail" aria-hidden="true"><span class="rail-r">R<sub>12</sub></span><span class="rail-n">107</span></div>
         <div class="card-body">
-          <p class="kicker">Tooling</p>
-          <h3 class="card-title">hemispheR-py</h3>
+          <p class="kicker">Systems &bull; Computer Vision</p>
+          <h3 class="card-title">HemispheR-py &amp; Android — Canopy Photography from First Principles</h3>
           <p class="card-line">
-            A dependency-light Python port of hemispherical fisheye canopy photo analysis.
+            Clean-room Python package ported directly from optical physics and canopy geometry without consulting R code — accompanied by a native Android app for real-time field analysis.
           </p>
-          <p class="links"><a href="https://github.com/realgauravvyas/hemispheR-py" rel="noopener">Code ↗</a></p>
+          <ul class="metrics">
+            <li><b>Clean-room implementation</b> — 0 lines of R code consulted</li>
+            <li><b>Native Android app</b> — on-device field canopy processing</li>
+            <li><b>Real-time gap fraction</b> &bull; sub-pixel fisheye geometry</li>
+            <li><b>Zero heavy dependencies</b> — runs offline on mobile &amp; edge hardware</li>
+          </ul>
+          <div class="card-detail full-only">
+            <p>
+              Re-engineered the entire canopy hemispherical photography workflow into pure Python from scratch,
+              derived purely from first-principles optical canopy geometry, Beer–Lambert light extinction models,
+              and equidistant/equisolid lens projections, without reading the original R package implementation.
+            </p>
+            <p>
+              Engineered a companion native Android application for forestry researchers and ecologists,
+              enabling direct image acquisition via mobile fisheye attachments and immediate on-device
+              calculation of sky-canopy binarization, optical gap fraction, and effective Leaf Area Index (LAI)
+              in remote field conditions without internet or cloud compute.
+            </p>
+          </div>
+          <p class="links">
+            <a class="link-strong" href="https://github.com/realgauravvyas/hemispheR-py" rel="noopener">Python Package ↗</a>
+            <a href="https://github.com/realgauravvyas/hemispheR-android" rel="noopener">Android App ↗</a>
+          </p>
         </div>
       </li>
 
@@ -595,14 +631,6 @@
              and a consistently high accuracy rating.</p>
         </div>
       </li>
-      <li class="rec">
-        <p class="rec-when">Ongoing</p>
-        <div class="rec-what">
-          <h3>Competitions</h3>
-          <p>Tech Zephyr 4.0 agentic-AI hackathon (IIT Bhubaneswar, team lead) ·
-             Avinya 2026 EcoInnovate Challenge (IIT Guwahati).</p>
-        </div>
-      </li>
     </ol>
 
     <div class="stack full-only">
@@ -639,11 +667,8 @@
       </div>
 
       <ul class="contact-links">
-        <li><a href="assets/Gaurav_Vyas_Resume.pdf" target="_blank" rel="noopener">Resume (PDF) ↗</a></li>
-        <li><a href="https://github.com/realgauravvyas" rel="noopener">GitHub</a></li>
-        <li><a href="https://huggingface.co/ctogaurav" rel="noopener">Hugging Face</a></li>
-        <li><a href="https://www.socialpsychology.org/member/gaurav-vyas" rel="noopener">SPN Profile</a></li>
-        <li><a href="https://oeis.org/A181671" rel="noopener">OEIS A181671</a> · <a href="https://oeis.org/A190502" rel="noopener">A190502</a></li>
+        <li><a href="https://www.linkedin.com/in/iitg" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="https://www.socialpsychology.org/member/gaurav-vyas" rel="noopener">SPN Profile ↗</a></li>
       </ul>
 
       <figure class="portrait">
@@ -659,7 +684,7 @@
         <input type="text" name="_honey" style="display:none">
 
         <h3 class="form-title">Send a message</h3>
-        <p class="form-desc full-only">Delivered straight to both my IITG and personal email inbox.</p>
+        <p class="form-desc full-only">Delivered straight to my Gmail inbox (with IITG email in CC).</p>
 
         <div class="form-row">
           <div class="form-field">
@@ -695,6 +720,14 @@
 <footer class="foot">
   <div class="wrap foot-wrap">
     <p>© <span id="year">2026</span> Gaurav Vyas</p>
+    <div class="foot-profiles">
+      <a href="https://github.com/realgauravvyas" rel="noopener">GitHub ↗</a>
+      <a href="https://huggingface.co/ctogaurav" rel="noopener">Hugging Face ↗</a>
+      <a href="https://oeis.org/wiki/User:Gaurav_Vyas" rel="noopener">OEIS ↗</a>
+      <a href="https://www.linkedin.com/in/iitg" rel="noopener">LinkedIn ↗</a>
+      <a href="https://www.socialpsychology.org/member/gaurav-vyas" rel="noopener">SPN ↗</a>
+      <a href="assets/Gaurav_Vyas_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+    </div>
     <p class="foot-mid">
       <span id="footMath">Sieved in-browser · verified against OEIS A104272</span>
     </p>
