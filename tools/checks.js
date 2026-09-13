@@ -1,7 +1,7 @@
 (function () {
   var out = {}, fail = [];
-  var $ = function (s) { return document.querySelector(s); };
-  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   function check(name, cond, detail) {
     out[name] = cond ? 'pass' : ('FAIL' + (detail ? ' — ' + detail : ''));
     if (!cond) fail.push(name + (detail ? ': ' + detail : ''));
@@ -148,6 +148,39 @@
   check('contrast_body_4_5', out.contrast_body >= 4.5, out.contrast_body + ':1');
   check('contrast_gold_4_5', out.contrast_gold >= 4.5, out.contrast_gold + ':1');
   out.body_bg = bodyBg;
+
+  /* ── education & experience categories ── */
+  var eduSec = $('#education');
+  check('education_section', !!eduSec, 'missing #education');
+  var eduTitle = eduSec ? $('.sec-title', eduSec) : null;
+  check('education_title', !!eduTitle && eduTitle.textContent.trim() === 'Education', eduTitle ? eduTitle.textContent : 'none');
+  var subCat = $('.sub-cat-title');
+  check('experience_category', !!subCat && /Experience & Contributions/.test(subCat.textContent), subCat ? subCat.textContent : 'none');
+
+  /* ── contact email checks ── */
+  var contactMails = $$('.contact-mails a').map(function (a) { return a.textContent.trim(); });
+  check('single_contact_email', contactMails.length === 1 && contactMails[0] === 'g.vyas@op.iitg.ac.in', contactMails.join(', '));
+  var allVisibleText = document.body.innerText || '';
+  check('no_visible_gmail', !/gmail\.com/i.test(allVisibleText), 'gmail detected in visible text');
+
+  /* ── form email field is optional ── */
+  var cfEmail = $('#cf-email');
+  check('cf_email_optional', !!cfEmail && !cfEmail.required, cfEmail ? 'required=' + cfEmail.required : 'missing');
+
+  /* ── theme toggle ── */
+  var themeBtn = $('#themeToggle');
+  check('theme_toggle_exists', !!themeBtn);
+  if (themeBtn) {
+    themeBtn.click();
+    var isLight = document.body.classList.contains('light-mode');
+    var themeLbl = $('.theme-label', themeBtn);
+    var labelLight = themeLbl ? themeLbl.textContent.trim() : '';
+    check('theme_toggle_light', isLight && labelLight === 'Dark', 'isLight=' + isLight + ' label=' + labelLight);
+    themeBtn.click();
+    var isDark = !document.body.classList.contains('light-mode');
+    var labelDark = themeLbl ? themeLbl.textContent.trim() : '';
+    check('theme_toggle_dark', isDark && labelDark === 'Light', 'isDark=' + isDark + ' label=' + labelDark);
+  }
 
   out.failures = fail;
   out.passed = fail.length === 0;

@@ -26,15 +26,15 @@
     goldHot:   [255, 233, 176],
     cyan:      [ 86, 220, 255]
   };
-  var COL_BW = {
-    pending:   [ 90,  90,  90],
-    composite: [ 65,  65,  65],
-    prime:     [255, 255, 255],
-    gold:      [255, 255, 255],
-    goldHot:   [255, 255, 255],
-    cyan:      [215, 215, 215]
+  var COL_LIGHT = {
+    pending:   [140, 150, 165],
+    composite: [195, 202, 212],
+    prime:     [ 20,  28,  42],
+    gold:      [179, 107,   0],
+    goldHot:   [138,  82,   0],
+    cyan:      [  0, 122, 153]
   };
-  var isBw = false;
+  var isLight = false;
   var COL = {
     pending:   [122, 134, 156],
     composite: [122, 134, 156],
@@ -202,9 +202,9 @@
     if (t.sweep > 0 && t.sweep < 1) {
       var ly = offY + (bandRow + 0.5) * cell;
       var g = bctx.createLinearGradient(0, 0, W, 0);
-      var sc = isBw ? 'rgba(255,255,255,' : 'rgba(255,193,77,';
+      var sc = isLight ? 'rgba(179,107,0,' : 'rgba(255,193,77,';
       g.addColorStop(0,   sc + '0)');
-      g.addColorStop(0.5, sc + (isBw ? '.6)' : '.42)'));
+      g.addColorStop(0.5, sc + (isLight ? '.5)' : '.42)'));
       g.addColorStop(1,   sc + '0)');
       bctx.fillStyle = g;
       bctx.fillRect(0, ly, W, 1);
@@ -217,8 +217,8 @@
       var q = cellXY(it.i);
       var isAnchor = Object.prototype.hasOwnProperty.call(anchors, it.i);
       var bloom = 1 - Math.abs(it.ig - 0.55) * 1.2;   /* brightest as it lights */
-      bctx.shadowColor = isBw
-        ? ('rgba(255,255,255,' + (0.7 * it.ig).toFixed(3) + ')')
+      bctx.shadowColor = isLight
+        ? ('rgba(179,107,0,' + (0.45 * it.ig).toFixed(3) + ')')
         : ('rgba(255,193,77,' + (0.55 * it.ig).toFixed(3) + ')');
       bctx.shadowBlur = (isAnchor ? 16 : 9) * it.ig;
       bctx.fillStyle = rgba(
@@ -353,9 +353,11 @@
       var p = cellXY(v);
       var ph = (now / 1000) * 0.7 + a * 0.55;
       var puls = 0.5 + 0.5 * Math.sin(ph);
-      gctx.shadowColor = 'rgba(255,193,77,' + (0.3 + 0.4 * puls).toFixed(3) + ')';
+      gctx.shadowColor = isLight
+        ? ('rgba(179,107,0,' + (0.2 + 0.3 * puls).toFixed(3) + ')')
+        : ('rgba(255,193,77,' + (0.3 + 0.4 * puls).toFixed(3) + ')');
       gctx.shadowBlur = 10 + 14 * puls;
-      gctx.fillStyle = rgba(COL.goldHot, 0.30 + 0.45 * puls);
+      gctx.fillStyle = rgba(COL.goldHot, isLight ? (0.35 + 0.45 * puls) : (0.30 + 0.45 * puls));
       gctx.fillText(String(v), p.x, p.y);
     }
     gctx.shadowBlur = 0;
@@ -491,20 +493,23 @@
     if (localStorage.getItem('gv-skim') === '1') setSkim(true, false);
   } catch (err) { /* ignore */ }
 
-  /* ═════════════════════ 6b. BLACK & WHITE MODE ═════════════════════ */
+  /* ═════════════════════ 6b. LIGHT / DARK MODE ═════════════════════ */
 
-  var bwBtn = $('#bwToggle');
-  function setBw(on, persist) {
-    isBw = !!on;
-    document.body.classList.toggle('bw-mode', isBw);
-    if (bwBtn) {
-      bwBtn.setAttribute('aria-pressed', isBw ? 'true' : 'false');
-      var lbl = $('.mode-label', bwBtn);
-      if (lbl) lbl.textContent = isBw ? 'B&W (On)' : 'B&W';
+  var themeBtn = $('#themeToggle');
+  function setTheme(light, persist) {
+    isLight = !!light;
+    document.body.classList.toggle('light-mode', isLight);
+    if (themeBtn) {
+      themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+      var icon = $('.theme-icon', themeBtn);
+      var lbl = $('.theme-label', themeBtn);
+      if (icon) icon.textContent = isLight ? '🌙' : '☀️';
+      if (lbl) lbl.textContent = isLight ? 'Dark' : 'Light';
+      themeBtn.setAttribute('title', isLight ? 'Switch to Dark mode (press T)' : 'Switch to Light mode (press T)');
     }
-    Object.assign(COL, isBw ? COL_BW : COL_DEFAULT);
+    Object.assign(COL, isLight ? COL_LIGHT : COL_DEFAULT);
     if (persist !== false) {
-      try { localStorage.setItem('gv-bw', isBw ? '1' : '0'); } catch (err) { /* private mode */ }
+      try { localStorage.setItem('gv-theme', isLight ? 'light' : 'dark'); } catch (err) { /* private mode */ }
     }
     if (introDone) {
       requestAnimationFrame(function () {
@@ -512,20 +517,23 @@
       });
     }
   }
-  if (bwBtn) {
-    bwBtn.addEventListener('click', function () {
-      setBw(!isBw);
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      setTheme(!isLight);
     });
   }
   document.addEventListener('keydown', function (e) {
-    if (e.key !== 'b' && e.key !== 'B') return;
+    if (e.key !== 't' && e.key !== 'T' && e.key !== 'l' && e.key !== 'L') return;
     var t = e.target;
     if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-    setBw(!isBw);
+    setTheme(!isLight);
   });
   try {
-    if (localStorage.getItem('gv-bw') === '1') setBw(true, false);
+    var savedTheme = localStorage.getItem('gv-theme');
+    if (savedTheme === 'light') {
+      setTheme(true, false);
+    }
   } catch (err) { /* ignore */ }
 
   /* ═════════════════════ 7. FILTERS ═════════════════════ */
@@ -599,7 +607,7 @@
         }
       });
     }, { rootMargin: '-45% 0px -45% 0px' });
-    ['work', 'method', 'record', 'contact'].forEach(function (id) {
+    ['work', 'method', 'education', 'record', 'contact'].forEach(function (id) {
       var el = document.getElementById(id);
       if (el) secIO.observe(el);
     });
@@ -652,6 +660,12 @@
       status.textContent = '';
 
       var formData = new FormData(form);
+      var userEmail = (formData.get('email') || '').trim();
+      if (!userEmail) {
+        // FormSubmit requires a valid email structure for dispatch; provide anonymous proxy
+        formData.set('email', 'anonymous@visitor.local');
+        formData.set('reply_to', 'None provided (anonymous sender)');
+      }
 
       fetch(form.action, {
         method: 'POST',
@@ -672,7 +686,7 @@
       .catch(function () {
         // Fallback info if network fails
         status.className = 'form-status is-error';
-        status.innerHTML = 'Could not send directly via form. Please email directly at <a href="mailto:g.vyas@op.iitg.ac.in" style="color:inherit;text-decoration:underline;">g.vyas@op.iitg.ac.in</a> or <a href="mailto:gaurav.vyas.1729@gmail.com" style="color:inherit;text-decoration:underline;">gaurav.vyas.1729@gmail.com</a>.';
+        status.innerHTML = 'Could not send directly via form. Please email directly at <a href="mailto:g.vyas@op.iitg.ac.in" style="color:inherit;text-decoration:underline;">g.vyas@op.iitg.ac.in</a>.';
       })
       .finally(function () {
         if (submitBtn) {

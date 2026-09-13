@@ -31,15 +31,15 @@
   <nav class="bar-nav" aria-label="Sections">
     <a href="#work">Work</a>
     <a href="#method">Method</a>
-    <a href="#record">Record</a>
+    <a href="#education">Education</a>
     <a href="#contact">Contact</a>
     <a href="assets/Gaurav_Vyas_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
   </nav>
   <div class="bar-actions">
-    <button class="mode-toggle" id="bwToggle" type="button" aria-pressed="false"
-            title="Toggle Black &amp; White monochrome mode (press B)">
-      <span class="mode-swatch" aria-hidden="true"></span>
-      <span class="mode-label">B&amp;W</span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false"
+            title="Toggle Light / Dark mode (press T)">
+      <span class="theme-icon" aria-hidden="true">☀️</span>
+      <span class="theme-label">Light</span>
     </button>
     <button class="skim-toggle" id="skimToggle" type="button" aria-pressed="false"
             title="Condense the page to hard facts only (press S)">
@@ -66,30 +66,27 @@
     </h1>
 
     <p class="lede">
-      B.Sc. (Hons.) Data Science &amp; AI at <strong>IIT&nbsp;Guwahati</strong> · Post Graduate Diploma in Applied Statistics at <strong>ISI&nbsp;Kolkata</strong> (competitive merit entrance, full scholarship). I extended
-      <strong class="hl">OEIS&nbsp;A181671</strong> (to 10<sup>23</sup>) and <strong class="hl">OEIS&nbsp;A190502</strong> (to 2<sup>72</sup>) on a laptop,
-      pulled a <strong>128-bit AES key</strong> out of power traces, and publish my
-      <strong>null results</strong>.
+      Student of <strong>IIT&nbsp;Guwahati</strong> in B.Sc. (Hons.) Data Science &amp; AI, and student of <strong>ISI&nbsp;Kolkata</strong> in the Post Graduate Diploma in Applied Statistics (competitive merit entrance, full scholarship). My degree research centers on <strong>deep-learning side-channel cryptanalysis</strong> (recovering a certified 128-bit AES key from physical power traces), <strong>vision-language mathematical document AI</strong>, and reinforcement learning — alongside extending and publishing <strong class="hl">OEIS&nbsp;A181671</strong> (to 10<sup>23</sup>) and <strong class="hl">OEIS&nbsp;A190502</strong> (to 2<sup>72</sup>).
     </p>
 
     <ul class="chips" aria-label="Headline credentials">
       <li class="chip chip-gold">
-        <span class="chip-k">OEIS A181671 &amp; A190502</span>
-        <span class="chip-v">Published &middot; Aug &amp; Sep 2026</span>
-      </li>
-      <li class="chip">
         <span class="chip-k">AES-128 recovered</span>
-        <span class="chip-v">16/16 bytes &middot; log<sub>2</sub> rank ≤ 1</span>
+        <span class="chip-v">16/16 bytes &middot; Side-channel ML</span>
       </li>
       <li class="chip">
-        <span class="chip-k">Shipped</span>
-        <span class="chip-v">17 public repos &middot; 5 live demos</span>
+        <span class="chip-k">Document AI &amp; Vision</span>
+        <span class="chip-v">GLM-OCR &bull; 100% compile rate</span>
+      </li>
+      <li class="chip">
+        <span class="chip-k">OEIS Contributor</span>
+        <span class="chip-v">A181671 &amp; A190502 Published</span>
       </li>
     </ul>
 
     <div class="hero-cta">
       <a class="btn btn-primary" href="#work">See the work <span aria-hidden="true">↓</span></a>
-      <a class="btn" href="assets/Gaurav_Vyas_Resume.pdf" target="_blank" rel="noopener">Resume PDF ↗</a>
+      <a class="btn" href="assets/Gaurav_Vyas_Resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
       <a class="btn" href="https://github.com/realgauravvyas" rel="noopener">GitHub ↗</a>
       <a class="btn" href="https://huggingface.co/ctogaurav" rel="noopener">Hugging Face ↗</a>
       <a class="btn" href="https://oeis.org/wiki/User:Gaurav_Vyas" rel="noopener">OEIS Profile ↗</a>
@@ -119,13 +116,13 @@
 <section class="ledger" aria-label="At a glance">
   <div class="wrap ledger-grid">
     <div class="ledger-item">
-      <dt>Studying</dt>
-      <dd>B.Sc. (Hons.) DS &amp; AI, <span class="muted">IIT Guwahati</span><br>
-          PGDAS, <span class="muted">ISI Kolkata (Full Scholarship)</span></dd>
+      <dt>Student of</dt>
+      <dd>IIT Guwahati <span class="muted">(B.Sc. Hons. DS &amp; AI)</span><br>
+          ISI Kolkata <span class="muted">(PGDAS &middot; Full Scholarship)</span></dd>
     </div>
     <div class="ledger-item">
-      <dt>Working on</dt>
-      <dd>Computational number theory,<br><span class="muted">side-channel ML, document AI</span></dd>
+      <dt>Degree research</dt>
+      <dd>Deep-learning side-channel cryptanalysis,<br><span class="muted">document vision AI, reinforcement learning</span></dd>
     </div>
     <div class="ledger-item">
       <dt>Known for</dt>
@@ -589,49 +586,56 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════ RECORD ═══════════════════════════ -->
-<section class="section" id="record">
+<!-- ═══════════════════════════ EDUCATION ═══════════════════════════ -->
+<section class="section" id="education">
+  <span id="record" style="position:relative;top:-80px;visibility:hidden;display:block;"></span>
   <div class="wrap">
     <header class="sec-head">
       <p class="sec-idx">03</p>
-      <h2 class="sec-title">Record</h2>
+      <h2 class="sec-title">Education</h2>
     </header>
 
     <ol class="record">
       <li class="rec">
-        <p class="rec-when">2026</p>
+        <p class="rec-when">2023 – 2027</p>
         <div class="rec-what">
-          <h3>OEIS contributor — A181671 &amp; A190502</h3>
-          <p>Published contributor to the On-Line Encyclopedia of Integer Sequences: six terms in A181671 (15 Aug 2026), and 16 terms in A190502 through 2<sup>72</sup> (13 Sep 2026).</p>
+          <h3>Student — B.Sc. (Hons.) Data Science &amp; Artificial Intelligence</h3>
+          <p>Indian Institute of Technology Guwahati (Online Degree Program). <span class="muted">CGPA 7.75.</span>
+             Degree research in deep-learning side-channel cryptanalysis (certified 128-bit AES recovery),
+             vision-language mathematical document AI, and reinforcement learning.</p>
         </div>
       </li>
       <li class="rec">
         <p class="rec-when">2024 – 2025</p>
         <div class="rec-what">
-          <h3>Post Graduate Diploma in Applied Statistics (PGDAS)</h3>
-          <p>Indian Statistical Institute (ISI), Kolkata.
+          <h3>Student — Post Graduate Diploma in Applied Statistics (PGDAS)</h3>
+          <p>Indian Statistical Institute, Kolkata (Online Program).
              Admitted through the highly competitive national entrance route with a <b>full scholarship</b>.
              Specialized coursework across mathematical statistics, probabilistic modeling, inference, and computational data analysis.</p>
         </div>
       </li>
-      <li class="rec">
-        <p class="rec-when">2023 – 2027</p>
-        <div class="rec-what">
-          <h3>B.Sc. (Hons.) Data Science &amp; Artificial Intelligence</h3>
-          <p>Indian Institute of Technology, Guwahati. <span class="muted">CGPA 7.75.</span>
-             Coursework across machine learning, deep learning and data mining;
-             degree projects in side-channel cryptanalysis and reinforcement learning.</p>
-        </div>
-      </li>
-      <li class="rec">
-        <p class="rec-when">2021 – now</p>
-        <div class="rec-what">
-          <h3>Advanced Mathematics Expert — Chegg Inc.</h3>
-          <p>1,187+ advanced mathematics problems solved with worked, step-by-step explanations
-             and a consistently high accuracy rating.</p>
-        </div>
-      </li>
     </ol>
+
+    <div class="sub-category">
+      <h3 class="sub-cat-title">Experience &amp; Contributions</h3>
+      <ol class="record">
+        <li class="rec">
+          <p class="rec-when">2026</p>
+          <div class="rec-what">
+            <h3>OEIS contributor — A181671 &amp; A190502</h3>
+            <p>Published contributor to the On-Line Encyclopedia of Integer Sequences: six terms in A181671 (15 Aug 2026), and 16 terms in A190502 through 2<sup>72</sup> (13 Sep 2026).</p>
+          </div>
+        </li>
+        <li class="rec">
+          <p class="rec-when">2021 – now</p>
+          <div class="rec-what">
+            <h3>Advanced Mathematics Expert — Chegg Inc.</h3>
+            <p>1,187+ advanced mathematics problems solved with worked, step-by-step explanations
+               and a consistently high accuracy rating.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
 
     <div class="stack full-only">
       <h3 class="stack-title">Tools I actually reach for</h3>
@@ -660,10 +664,6 @@
           <span class="mail-label">Academic &middot; IIT Guwahati</span>
           <a href="mailto:g.vyas@op.iitg.ac.in">g.vyas@op.iitg.ac.in</a>
         </div>
-        <div class="mail-item">
-          <span class="mail-label">Personal &middot; Direct</span>
-          <a href="mailto:gaurav.vyas.1729@gmail.com">gaurav.vyas.1729@gmail.com</a>
-        </div>
       </div>
 
       <ul class="contact-links">
@@ -684,7 +684,7 @@
         <input type="text" name="_honey" style="display:none">
 
         <h3 class="form-title">Send a message</h3>
-        <p class="form-desc full-only">Delivered straight to my Gmail inbox (with IITG email in CC).</p>
+        <p class="form-desc full-only">Delivered straight to my inbox (with IITG email in CC).</p>
 
         <div class="form-row">
           <div class="form-field">
@@ -692,8 +692,8 @@
             <input type="text" id="cf-name" name="name" placeholder="Ada Lovelace" required autocomplete="name">
           </div>
           <div class="form-field">
-            <label for="cf-email">Your Email</label>
-            <input type="email" id="cf-email" name="email" placeholder="ada@example.com" required autocomplete="email">
+            <label for="cf-email">Your Email <span class="muted">(optional)</span></label>
+            <input type="email" id="cf-email" name="email" placeholder="ada@example.com (optional)" autocomplete="email">
           </div>
         </div>
 
