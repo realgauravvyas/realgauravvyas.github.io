@@ -22,8 +22,10 @@ The numbers that survive both passes light up gold. The first twelve of them —
 the page. Click one and it takes you there.
 
 The metaphor is not decoration. Extending the count of Ramanujan primes is the
-thing I am proudest of: OEIS A181671 now lists `a(18)-a(23) from Gaurav Vyas,
-Aug 15 2026`, which moved the sequence from 10^17 to 10^23.
+thing I am proudest of: OEIS A181671 lists `a(18)-a(23) from Gaurav Vyas,
+Aug 15 2026` (moving the sequence from 10^17 to 10^23), and the base-2 sibling
+OEIS A190502 extends the count below 2^n through 2^72 (`a(57)-a(72) from
+Gaurav Vyas, Sep 13 2026`).
 
 ## Nothing here is faked
 

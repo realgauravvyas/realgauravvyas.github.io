@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gaurav Vyas — What survives the sieve</title>
-<meta name="description" content="Gaurav Vyas — B.Sc. (Hons.) Data Science &amp; AI, IIT Guwahati. Extended OEIS A181671 from 10^17 to 10^23, recovered a 128-bit AES key from power traces, and publishes null results.">
+<meta name="description" content="Gaurav Vyas — B.Sc. (Hons.) Data Science &amp; AI, IIT Guwahati. Extended OEIS A181671 (to 10^23) and OEIS A190502 (to 2^72), recovered a 128-bit AES key from power traces, and publishes null results.">
 <meta name="author" content="Gaurav Vyas">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#06070c">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gaurav Vyas — What survives the sieve">
-<meta property="og:description" content="Extended OEIS A181671 from 10^17 to 10^23. Recovered a 128-bit AES key from power traces. Publishes null results.">
+<meta property="og:description" content="Extended OEIS A181671 (10^23) and A190502 (2^72). Recovered a 128-bit AES key from power traces. Publishes null results.">
 <meta property="og:url" content="https://realgauravvyas.github.io/">
 <meta property="og:image" content="https://realgauravvyas.github.io/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -59,15 +59,15 @@
 
     <p class="lede">
       B.Sc. (Hons.) Data Science &amp; AI at <strong>IIT&nbsp;Guwahati</strong>. I extended
-      <strong class="hl">OEIS&nbsp;A181671</strong> from 10<sup>17</sup> to 10<sup>23</sup> on a laptop,
+      <strong class="hl">OEIS&nbsp;A181671</strong> (to 10<sup>23</sup>) and <strong class="hl">OEIS&nbsp;A190502</strong> (to 2<sup>72</sup>) on a laptop,
       pulled a <strong>128-bit AES key</strong> out of power traces, and publish my
       <strong>null results</strong>.
     </p>
 
     <ul class="chips" aria-label="Headline credentials">
       <li class="chip chip-gold">
-        <span class="chip-k">OEIS A181671</span>
-        <span class="chip-v">a(18)–a(23) &middot; accepted Aug 2026</span>
+        <span class="chip-k">OEIS A181671 &amp; A190502</span>
+        <span class="chip-v">Published &middot; Aug &amp; Sep 2026</span>
       </li>
       <li class="chip">
         <span class="chip-k">AES-128 recovered</span>
@@ -152,14 +152,14 @@
         <div class="card-body cf-grid">
          <div class="cf-main">
           <p class="kicker kicker-gold">Published mathematics</p>
-          <h3 class="card-title">Six new terms in OEIS A181671</h3>
+          <h3 class="card-title">Ramanujan primes in the OEIS (A181671 &amp; A190502)</h3>
           <p class="card-line">
-            Extended the count of Ramanujan primes from 10<sup>17</sup> to 10<sup>23</sup> —
+            Extended the count of Ramanujan primes to 10<sup>23</sup> in base 10 and 2<sup>72</sup> in base 2 —
             permanently, inside the reference work itself.
           </p>
           <ul class="metrics">
-            <li><b>a(18)–a(23)</b> accepted 15 Aug 2026</li>
-            <li><b>10<sup>17</sup> → 10<sup>23</sup></b> range extended</li>
+            <li><b>A181671: a(18)–a(23)</b> accepted 15 Aug 2026</li>
+            <li><b>A190502: a(57)–a(72)</b> accepted 13 Sep 2026</li>
             <li><b>2</b> independent π(x) algorithms agree</li>
             <li><b>1</b> laptop, 12 threads, no cluster</li>
           </ul>
@@ -170,33 +170,34 @@
             </p>
             <p>
               The part worth defending is the anchoring. Every π-value the pipeline leans on matches
-              the published b-file of <a href="https://oeis.org/A007053" rel="noopener">A007053</a>
-              exactly — computed by different people, with different code, more than a decade earlier.
+              the published b-files of <a href="https://oeis.org/A007053" rel="noopener">A007053</a>
+              and <a href="https://oeis.org/A190502" rel="noopener">A190502</a>
+              exactly — computed by different people, with different code, years earlier.
               So the anchors need no re-running to be trusted, and the only quantity this work
               uniquely contributes is one small integer per term.
             </p>
-            <p class="card-caveat">
-              The base-2 sibling sequence (A190502, a(57)–a(72)) is submitted and under editorial
-              review — <b>not published</b>, and not claimed here.
+            <p class="card-note">
+              <b>Accepted in OEIS:</b> On 13 Sep 2026, the base-2 sibling sequence (<a href="https://oeis.org/A190502" rel="noopener">OEIS A190502</a>, a(57)–a(72)) was reviewed and approved by editor Joerg Arndt. The official <a href="https://oeis.org/A190502/b190502.txt" rel="noopener">b-file</a> now extends through <i>n</i>&nbsp;=&nbsp;72 and links directly to <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-2-56" rel="noopener">ramanujan-primes-beyond-2-56</a>.
             </p>
           </div>
           <p class="links">
-            <a class="link-strong" href="https://oeis.org/A181671" rel="noopener">The OEIS entry ↗</a>
-            <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-1e19" rel="noopener">Source &amp; paper ↗</a>
+            <a class="link-strong" href="https://oeis.org/A181671" rel="noopener">OEIS A181671 (Base 10) ↗</a>
+            <a class="link-strong" href="https://oeis.org/A190502" rel="noopener">OEIS A190502 (Base 2) ↗</a>
+            <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-1e19" rel="noopener">A181671 Source ↗</a>
+            <a href="https://github.com/realgauravvyas/ramanujan-primes-beyond-2-56" rel="noopener">A190502 Source ↗</a>
           </p>
          </div>
 
-         <aside class="cf-cite full-only" aria-label="The OEIS record">
-           <p class="cf-cite-head">the record itself</p>
-           <pre class="cf-cite-body"><span class="cf-f">%N</span> A181671 Number of Ramanujan
-    primes less than 10^n.
-<span class="cf-f">%E</span> a(10)-a(11) from _Dana Jacobsen_
-<span class="cf-f">%E</span> a(12) from _Dana Jacobsen_
-<span class="cf-f">%E</span> a(13)-a(14) from _Dana Jacobsen_
-<span class="cf-f">%E</span> a(15)-a(17) from _Dana Jacobsen_
+         <aside class="cf-cite full-only" aria-label="The OEIS records">
+           <p class="cf-cite-head">the records themselves</p>
+           <pre class="cf-cite-body"><span class="cf-f">%N</span> A181671 Ramanujan primes &lt; 10^n
 <span class="cf-f">%E</span> <b>a(18)-a(23) from _Gaurav Vyas_,
-    Aug 15 2026</b></pre>
-           <p class="cf-cite-foot">oeis.org/A181671</p>
+    Aug 15 2026</b>
+<span class="cf-f">%N</span> A190502 Ramanujan primes &lt; 2^n
+<span class="cf-f">%H</span> <b>b190502.txt (n=0..72)</b>
+<span class="cf-f">%H</span> <b>a(57)-a(72) source &amp; code:
+    _Gaurav Vyas_, Sep 13 2026</b></pre>
+           <p class="cf-cite-foot">oeis.org/A181671 &middot; oeis.org/A190502</p>
          </aside>
         </div>
       </li>
@@ -543,9 +544,8 @@
       <li class="rec">
         <p class="rec-when">2026</p>
         <div class="rec-what">
-          <h3>OEIS contributor — A181671</h3>
-          <p>Six terms accepted into the On-Line Encyclopedia of Integer Sequences, 15 Aug 2026.
-             A second sequence is under editorial review.</p>
+          <h3>OEIS contributor — A181671 &amp; A190502</h3>
+          <p>Published contributor to the On-Line Encyclopedia of Integer Sequences: six terms in A181671 (15 Aug 2026), and 16 terms in A190502 through 2<sup>72</sup> (13 Sep 2026).</p>
         </div>
       </li>
       <li class="rec">
@@ -602,7 +602,7 @@
       <ul class="contact-links">
         <li><a href="https://github.com/realgauravvyas" rel="noopener">GitHub</a></li>
         <li><a href="https://huggingface.co/ctogaurav" rel="noopener">Hugging Face</a></li>
-        <li><a href="https://oeis.org/A181671" rel="noopener">OEIS</a></li>
+        <li><a href="https://oeis.org/A181671" rel="noopener">OEIS A181671</a> · <a href="https://oeis.org/A190502" rel="noopener">A190502</a></li>
       </ul>
     </div>
     <figure class="portrait">
