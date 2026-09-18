@@ -20,6 +20,15 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<script>
+/* paint the saved theme before the first frame — no dark-flash on reload */
+(function () {
+  try {
+    if (localStorage.getItem('gv-theme') === 'light') document.body.classList.add('light-mode');
+    if (localStorage.getItem('gv-skim') === '1') document.body.classList.add('skim');
+  } catch (e) { /* private mode — defaults are fine */ }
+})();
+</script>
 
 <a class="skip-link" href="#work">Skip to the work</a>
 <div class="scroll-progress" aria-hidden="true"></div>

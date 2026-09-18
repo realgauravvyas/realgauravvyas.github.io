@@ -35,14 +35,7 @@
     cyan:      [  0, 122, 153]
   };
   var isLight = false;
-  var COL = {
-    pending:   [122, 134, 156],
-    composite: [122, 134, 156],
-    prime:     [232, 241, 255],
-    gold:      [255, 193,  77],
-    goldHot:   [255, 233, 176],
-    cyan:      [ 86, 220, 255]
-  };
+  var COL = Object.assign({}, COL_DEFAULT);   // the live palette; setTheme swaps it
   var rgba = function (c, a) {
     return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')';
   };
@@ -381,13 +374,7 @@
     tip = document.createElement('div');
     tip.className = 'sieve-tip';
     tip.setAttribute('role', 'status');
-    tip.style.cssText =
-      'position:absolute;z-index:4;pointer-events:none;opacity:0;' +
-      'transform:translate(-50%,-150%);transition:opacity .18s ease;' +
-      'background:rgba(10,12,21,.96);border:1px solid rgba(255,193,77,.5);' +
-      'border-radius:9px;padding:8px 13px;max-width:min(280px,70vw);' +
-      'font:12.5px/1.45 ui-monospace,"Cascadia Mono",Consolas,monospace;' +
-      'color:#ffe9b0;box-shadow:0 10px 34px rgba(0,0,0,.6);white-space:normal;';
+    /* all visuals live in style.css (.sieve-tip) so both themes can restyle it */
     hero.appendChild(tip);
   }
 
@@ -434,9 +421,9 @@
     if (!a) { hideTip(); hero.style.cursor = ''; return; }
     ensureTip();
     var p = cellXY(i);
-    tip.innerHTML = '<b style="color:#ffc14d">R' + sub(S.indexOfR[i]) + ' = ' + i + '</b><br>' +
+    tip.innerHTML = '<b>R' + sub(S.indexOfR[i]) + ' = ' + i + '</b><br>' +
       a.title.replace(/[<>&]/g, '') + '<br>' +
-      '<span style="color:#78849b">click to jump</span>';
+      '<span class="tip-dim">click to jump</span>';
     tip.style.left = p.x + 'px';
     tip.style.top = p.y - 8 + 'px';
     tip.style.opacity = '1';

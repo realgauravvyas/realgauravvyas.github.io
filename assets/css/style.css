@@ -939,6 +939,7 @@ body.light-mode .grain{ opacity:.028; }
 .card-feature{ animation:feature-breathe 8s ease-in-out infinite; }
 body.light-mode .card-feature{ animation-name:feature-breathe-light; }
 .card-feature.is-pinged{ animation:none; }  /* the ping owns the shadow then */
+body.light-mode .card-feature.is-pinged{ animation:none; }  /* match the light-mode name override's specificity */
 
 /* ── buttons: one clean sheen sweep per hover ── */
 .btn::after{
@@ -1015,8 +1016,8 @@ body.light-mode .card-feature{ animation-name:feature-breathe-light; }
   content:""; position:absolute; inset:-13px; border-radius:50%;
   background:conic-gradient(from 0deg,
     transparent 0 38%, rgba(var(--glow-rgb),.55) 47%, rgba(var(--cy-rgb),.4) 53%, transparent 62% 100%);
-  -webkit-mask:radial-gradient(closest-side, transparent calc(100% - 60px), #000 calc(100% - 59px));
-  mask:radial-gradient(closest-side, transparent calc(100% - 60px), #000 calc(100% - 59px));
+  -webkit-mask:radial-gradient(closest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+  mask:radial-gradient(closest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
   animation:ring-spin 8s linear infinite;
   pointer-events:none;
 }
@@ -1124,17 +1125,19 @@ body.skim .display{ font-size:clamp(2.4rem,7vw,4.4rem); }
   transform: translate(-50%, -150%);
   transition: opacity .18s ease;
   background: rgba(10,12,21,.96);
-  border: 1px solid rgba(255,193,77,.5);
+  border: 1px solid rgba(var(--glow-rgb),.5);
   border-radius: 9px;
   padding: 8px 13px;
   max-width: min(280px, 70vw);
   font-family: var(--mono);
   font-size: 12.5px;
   line-height: 1.45;
-  color: #ffe9b0;
+  color: var(--gold-hot);
   box-shadow: 0 10px 34px rgba(0,0,0,.6);
   white-space: normal;
 }
+.sieve-tip b { color: var(--gold); font-weight: 700; }
+.sieve-tip .tip-dim { color: var(--txt-dim); }
 
 /* ══════════════════ LIGHT MODE ══════════════════ */
 body.light-mode {
@@ -1160,10 +1163,6 @@ body.light-mode {
   --cy-rgb:     0,122,153;
   background:   #f6f8fa;
   color:        #24292f;
-}
-
-body.light-mode html {
-  background: #f6f8fa;
 }
 
 body.light-mode .hero-vignette {
@@ -1342,6 +1341,11 @@ body.light-mode .metrics li b {
   color: #090c10;
 }
 
+/* white-on-white chips need their own tint in the light theme */
+body.light-mode .metrics li {
+  background: rgba(9,12,16,.04);
+}
+
 body.light-mode .readout {
   background: rgba(255,255,255,.9);
   border-color: rgba(0,0,0,.1);
@@ -1364,6 +1368,20 @@ body.light-mode .contact-form-pane {
   background: rgba(255,255,255,.95);
   border-color: rgba(0,0,0,.1);
   box-shadow: 0 12px 40px rgba(0,0,0,.08);
+}
+
+/* the contact gradient and method panels had ink baked in */
+body.light-mode .section-contact {
+  background: linear-gradient(to bottom, #f6f8fa, #e9edf2);
+}
+
+body.light-mode .method {
+  background: rgba(255,255,255,.78);
+}
+
+body.light-mode .method:hover {
+  background: #ffffff;
+  border-color: rgba(179,107,0,.34);
 }
 
 body.light-mode .form-field input,
@@ -1441,6 +1459,11 @@ body.light-mode .sieve-tip {
   border-color: rgba(179,107,0,.45);
   color: #090c10;
   box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+/* #2ed573 is legible on ink but washes out on paper */
+body.light-mode .form-status.is-success {
+  color: #1a7f37;
 }
 
 /* ══════════════════ print ══════════════════ */
