@@ -23,6 +23,10 @@
   --gold-hot:   #ffe9b0;
   --rose:       #ff8fa3;
 
+  /* rgb triplets so the decorative layer can re-tint per theme */
+  --glow-rgb:   255,193,77;
+  --cy-rgb:     86,220,255;
+
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --mono: ui-monospace, "Cascadia Mono", "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
@@ -80,6 +84,7 @@ sup,sub{ font-size:.62em; line-height:0; }
   max-width:var(--maxw);
   margin-inline:auto;
   padding-inline:var(--gut);
+  position:relative; z-index:1;         /* content rides above the ambient tints */
 }
 
 .muted{ color:var(--txt-dim); }
@@ -301,6 +306,7 @@ sup,sub{ font-size:.62em; line-height:0; }
   color:var(--txt);
   background:rgba(13,16,25,.6);
   transition:all .25s var(--ease);
+  position:relative; overflow:hidden;   /* sheen sweep lives in the polish layer */
 }
 .btn:hover{
   border-color:var(--gold);
@@ -382,7 +388,7 @@ body.past-hero .readout{ opacity:0; visibility:hidden; }
 
 /* ══════════════════ sections ══════════════════ */
 
-.section{ padding-block:clamp(72px, 11vw, 132px); }
+.section{ padding-block:clamp(72px, 11vw, 132px); position:relative; }
 
 .sec-head{ margin-bottom:46px; }
 .sec-idx{
@@ -439,6 +445,7 @@ body.past-hero .readout{ opacity:0; visibility:hidden; }
 .card{
   grid-column:span 1;
   display:flex;
+  position:relative;                    /* cursor spotlight anchors here */
   background:linear-gradient(150deg, var(--panel) 0%, var(--ink-2) 100%);
   border:1px solid var(--line);
   border-radius:14px;
@@ -465,6 +472,7 @@ body.past-hero .readout{ opacity:0; visibility:hidden; }
   background:rgba(255,193,77,.045);
   border-right:1px solid var(--line);
   font-family:var(--mono);
+  position:relative; z-index:1;         /* stay above the card spotlight */
 }
 .rail-r{ font-size:11px; color:var(--txt-faint); letter-spacing:.06em; }
 .rail-n{
@@ -473,7 +481,7 @@ body.past-hero .readout{ opacity:0; visibility:hidden; }
   line-height:1;
 }
 
-.card-body{ padding:26px 28px 24px; flex:1 1 auto; min-width:0; }
+.card-body{ padding:26px 28px 24px; flex:1 1 auto; min-width:0; position:relative; z-index:1; }
 
 .kicker{
   font-family:var(--mono); font-size:10.5px;
@@ -835,6 +843,189 @@ body.past-hero .readout{ opacity:0; visibility:hidden; }
   border-top:1px solid var(--line);
 }
 
+/* ══════════════════ POLISH LAYER ══════════════════
+   Decorative only — no content lives in here. Colours come from the
+   --glow-rgb / --cy-rgb triplets, so it re-tints itself for light mode.
+   Everything degrades quietly with prefers-reduced-motion. */
+
+::selection{ background:rgba(var(--glow-rgb),.30); color:var(--txt-hi); }
+html{ scrollbar-color:rgba(var(--glow-rgb),.32) rgba(128,128,128,.06); scrollbar-width:thin; }
+::-webkit-scrollbar{ width:11px; height:11px; }
+::-webkit-scrollbar-track{ background:rgba(128,128,128,.07); }
+::-webkit-scrollbar-thumb{
+  background:rgba(var(--glow-rgb),.30);
+  border-radius:99px;
+  border:3px solid transparent;
+  background-clip:padding-box;
+}
+::-webkit-scrollbar-thumb:hover{ background:rgba(var(--glow-rgb),.5); background-clip:padding-box; }
+
+/* ── scroll progress: a hairline of cyan turning gold as you descend ── */
+.scroll-progress{
+  position:fixed; inset:0 0 auto 0; height:2px; z-index:150;
+  transform:scaleX(0); transform-origin:0 50%;
+  background:linear-gradient(90deg, var(--cyan-dim), var(--cyan) 30%, var(--gold) 72%, var(--gold-hot));
+  pointer-events:none;
+}
+@supports (animation-timeline:scroll()){
+  .scroll-progress{
+    animation:progress-grow linear both;
+    animation-timeline:scroll(root);
+  }
+}
+@keyframes progress-grow{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+
+/* ── film grain: keeps the flat panels from looking like plastic ── */
+.grain{
+  position:fixed; inset:0; z-index:140; pointer-events:none;
+  opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+body.light-mode .grain{ opacity:.028; }
+
+/* ── the headline: the surviving primes catch the light ── */
+.display-glow{
+  background:linear-gradient(100deg,
+    var(--gold) 0%, var(--gold-hot) 26%, var(--cyan) 52%, var(--gold) 78%, var(--gold-hot) 100%);
+  background-size:230% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 26px rgba(var(--glow-rgb),.22));
+  animation:shine 10s linear infinite;
+}
+@keyframes shine{ to{ background-position:-230% 0; } }
+
+/* ── ambient light under each section ── */
+.section::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(55% 42% at 92% 2%, rgba(var(--cy-rgb),.05), transparent 62%),
+    radial-gradient(52% 45% at 2% 98%, rgba(var(--glow-rgb),.055), transparent 62%);
+}
+.section-method::before{
+  background:
+    radial-gradient(46% 38% at 88% 8%, rgba(var(--glow-rgb),.06), transparent 60%),
+    radial-gradient(50% 42% at 6% 92%, rgba(var(--cy-rgb),.05), transparent 62%);
+}
+.ledger{ position:relative; }
+.ledger::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(70% 160% at 50% 50%, rgba(var(--glow-rgb),.04), transparent 70%);
+}
+
+/* ── cards: a gold spotlight that follows the cursor ──
+   (--sx/--sy are written by main.js; the fallback rests off the top edge) */
+.card::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(360px 260px at var(--sx, 50%) var(--sy, -80%),
+    rgba(var(--glow-rgb),.11), rgba(var(--cy-rgb),.03) 42%, transparent 70%);
+  opacity:0;
+  transition:opacity .4s var(--ease);
+}
+.card:hover::before{ opacity:1; }
+.card:hover .rail-n{ transform:translateY(-2px) scale(1.12); }
+.rail-n{ transition:transform .35s var(--ease); }
+
+/* the feature card breathes — it is the one worth looking at twice */
+@keyframes feature-breathe{
+  0%, 100%{ box-shadow:0 0 30px rgba(var(--glow-rgb),.05); }
+  50%     { box-shadow:0 0 64px rgba(var(--glow-rgb),.17); }
+}
+@keyframes feature-breathe-light{
+  0%, 100%{ box-shadow:0 6px 24px rgba(var(--glow-rgb),.05); }
+  50%     { box-shadow:0 6px 30px rgba(var(--glow-rgb),.14); }
+}
+.card-feature{ animation:feature-breathe 8s ease-in-out infinite; }
+body.light-mode .card-feature{ animation-name:feature-breathe-light; }
+.card-feature.is-pinged{ animation:none; }  /* the ping owns the shadow then */
+
+/* ── buttons: one clean sheen sweep per hover ── */
+.btn::after{
+  content:""; position:absolute; top:-20%; bottom:-20%; width:45%; left:-70%;
+  transform:skewX(-20deg);
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
+  transition:left .55s var(--ease);
+  pointer-events:none;
+}
+.btn:hover::after{ left:130%; }
+.btn-primary span{ display:inline-block; transition:transform .25s var(--ease); }
+.btn-primary:hover span{ transform:translateY(3px); }
+.btn-primary.form-submit:hover span{ transform:translateX(4px) translateY(0); }
+
+/* ── chips and filters lift a little ── */
+.chip{ transition:transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease); }
+.chip:hover{ transform:translateY(-2px); border-color:var(--line-2); }
+.chip-gold:hover{ border-color:rgba(var(--glow-rgb),.6); box-shadow:0 8px 30px rgba(var(--glow-rgb),.14); }
+.filter.is-on{ box-shadow:0 0 20px rgba(var(--glow-rgb),.28); }
+
+/* ── kickers get a rule in front of them ── */
+.kicker::before{
+  content:""; display:inline-block; width:16px; height:1px;
+  background:currentColor; opacity:.55;
+  vertical-align:middle; margin-right:9px;
+}
+
+/* ── links: underline wipes in from the left ── */
+.links a, .contact-links a{ position:relative; }
+.links a::after, .contact-links a::after{
+  content:""; position:absolute; left:0; bottom:-3px;
+  width:100%; height:1px; background:currentColor;
+  transform:scaleX(0); transform-origin:100% 50%;
+  transition:transform .32s var(--ease);
+}
+.links a:hover::after, .contact-links a:hover::after{ transform:scaleX(1); transform-origin:0 50%; }
+
+/* ── method cards: a quiet quotation mark keeps company ── */
+.method{ overflow:hidden; transition:border-color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease); }
+.method:hover{ transform:translateY(-3px); }
+.method::before{
+  content:"\201C"; position:absolute; right:16px; top:-34px; z-index:0;
+  font-family:var(--serif); font-size:150px; line-height:1;
+  color:rgba(var(--glow-rgb),.06);
+  pointer-events:none;
+  transition:transform .5s var(--ease), color .5s var(--ease);
+}
+.method:hover::before{ transform:translateY(8px) rotate(-4deg); color:rgba(var(--glow-rgb),.11); }
+
+/* ── record: entries slide toward the margin light on hover ── */
+.rec{
+  position:relative;
+  transition:padding-left .3s var(--ease), background .3s var(--ease);
+}
+.rec:hover{
+  padding-left:12px;
+  background:linear-gradient(90deg, rgba(var(--glow-rgb),.05), transparent 42%);
+}
+.rec-what h3{ transition:color .3s var(--ease); }
+.rec:hover .rec-what h3{ color:var(--gold); }
+
+/* ── tools: pills warm up under the cursor ── */
+.stack-list span{ transition:all .25s var(--ease); cursor:default; }
+.stack-list span:hover{
+  color:var(--gold);
+  border-color:rgba(var(--glow-rgb),.5);
+  background:rgba(var(--glow-rgb),.06);
+  transform:translateY(-2px);
+}
+
+/* ── portrait: a slow gold ring, like an orbiting read head ── */
+.portrait{ position:relative; }
+.portrait::before{
+  content:""; position:absolute; inset:-13px; border-radius:50%;
+  background:conic-gradient(from 0deg,
+    transparent 0 38%, rgba(var(--glow-rgb),.55) 47%, rgba(var(--cy-rgb),.4) 53%, transparent 62% 100%);
+  -webkit-mask:radial-gradient(closest-side, transparent calc(100% - 60px), #000 calc(100% - 59px));
+  mask:radial-gradient(closest-side, transparent calc(100% - 60px), #000 calc(100% - 59px));
+  animation:ring-spin 8s linear infinite;
+  pointer-events:none;
+}
+@keyframes ring-spin{ to{ transform:rotate(360deg); } }
+
+/* ── the mark turns its head when you reach for it ── */
+.mark-glyph{ display:inline-block; transition:transform .35s var(--ease); }
+.mark:hover .mark-glyph{ transform:rotate(-8deg) scale(1.1); }
+
 /* ══════════════════ SKIM MODE ══════════════════
    The page sieves itself: prose falls away, facts survive. */
 
@@ -965,6 +1156,8 @@ body.light-mode {
   --gold:       #b36b00;
   --gold-hot:   #8a5200;
   --rose:       #cf222e;
+  --glow-rgb:   179,107,0;
+  --cy-rgb:     0,122,153;
   background:   #f6f8fa;
   color:        #24292f;
 }
@@ -1131,6 +1324,15 @@ body.light-mode .card-feature {
   box-shadow: 0 6px 24px rgba(179,107,0,.07);
 }
 
+body.light-mode .cf-cite {
+  background: #f6f8fa;
+  border-color: rgba(179,107,0,.3);
+}
+
+body.light-mode .cf-cite-body b {
+  color: #8a5200;
+}
+
 body.light-mode .rail-r,
 body.light-mode .rail-n {
   color: #57606a;
@@ -1247,7 +1449,17 @@ body.light-mode .sieve-tip {
   :root{ --txt:#15181f; --txt-hi:#000; --txt-dim:#3c4350; --gold:#8a6200; }
   html,body{ background:#fff; color:#15181f; }
   .bar,.readout,.hero-vignette,.sieve-base,.sieve-glow,.filters,.hero-cta,
-  .skip-link,.hero-hint,.noscript-note,.portrait{ display:none !important; }
+  .skip-link,.hero-hint,.noscript-note,.portrait,
+  .grain,.scroll-progress{ display:none !important; }
+  /* gradient text is paper-hostile — print it as plain ink */
+  .display-glow{
+    background:none !important;
+    color:#000 !important;
+    -webkit-text-fill-color:#000 !important;
+    filter:none !important;
+    animation:none !important;
+  }
+  .card-feature{ animation:none !important; }
   .hero{ min-height:auto; padding:0 0 24px; }
   .display{ font-size:34pt; }
   .card,.method,.chip{

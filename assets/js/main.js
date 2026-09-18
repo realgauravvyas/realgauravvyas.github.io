@@ -564,6 +564,22 @@
     });
   }
 
+  /* ═════════════════════ 7b. CARD SPOTLIGHT ═════════════════════ */
+  /* The gold highlight on each card tracks the cursor. Purely visual:
+     the CSS fallback keeps cards tasteful even without these events. */
+
+  function initCardSpotlight() {
+    var list = $('#cards');
+    if (!list) return;
+    list.addEventListener('pointermove', function (e) {
+      var card = e.target.closest ? e.target.closest('.card') : null;
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+  }
+
   /* ═════════════════════ 8. SCROLL BEHAVIOUR ═════════════════════ */
 
   function initScroll() {
@@ -581,11 +597,20 @@
 
     /* reveals — added here so a no-JS page is never left invisible */
     var targets = $$('.card, .method, .rec, .sec-head, .ledger-item, .contact-main, .portrait');
-    targets.forEach(function (el) { el.classList.add('reveal'); });
+    targets.forEach(function (el) {
+      el.classList.add('reveal');
+      /* stagger siblings so rows unfurl left-to-right instead of all at once */
+      var sibs = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.transitionDelay = ((sibs % 6) * 70) + 'ms';
+    });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {
           en.target.classList.add('is-in');
+          /* hand the element back to CSS once it has landed */
+          (function (t) {
+            setTimeout(function () { t.style.transitionDelay = ''; }, 950);
+          })(en.target);
           io.unobserve(en.target);
         }
       });
@@ -704,6 +729,7 @@
     if (y) y.textContent = String(new Date().getFullYear());
 
     initFilters();
+    initCardSpotlight();
     initScroll();
     initContactForm();
 
