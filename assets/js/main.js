@@ -523,6 +523,34 @@
     }
   } catch (err) { /* ignore */ }
 
+  /* ═════════════════════ 6c. MOBILE SECTION MENU ═════════════════════ */
+
+  var navToggle = $('#navToggle');
+  var barNav = $('#barNav');
+  function setNavOpen(on) {
+    document.body.classList.toggle('nav-open', on);
+    if (navToggle) navToggle.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (navToggle && barNav) {
+    navToggle.addEventListener('click', function () {
+      setNavOpen(!document.body.classList.contains('nav-open'));
+    });
+    barNav.addEventListener('click', function (e) {
+      if (e.target && e.target.tagName === 'A') setNavOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setNavOpen(false);
+    });
+    document.addEventListener('click', function (e) {
+      if (!document.body.classList.contains('nav-open')) return;
+      if (e.target && e.target.closest && e.target.closest('#bar')) return;
+      setNavOpen(false);
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 760) setNavOpen(false);
+    });
+  }
+
   /* ═════════════════════ 7. FILTERS ═════════════════════ */
 
   var allCards = [];
